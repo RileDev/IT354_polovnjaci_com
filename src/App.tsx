@@ -1,12 +1,18 @@
-import React from 'react'
-import {Button} from "./components/ui/button.tsx";
+import {BrowserRouter, Route, Routes} from "react-router";
+import Homepage from "./pages/Homepage.tsx";
+import Layout from "./components/layout/Layout.tsx";
 
 const App = () => {
     return (
-        <div className="bg-background text-foreground flex min-h-svh flex-col items-center justify-center">
-            <h1>IT354 Projekat - Polovnjaci.com</h1>
-            <Button className="cursor-pointer">Click me</Button>
-        </div>
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Layout />}>
+                    <Route index element={<Homepage />}/>
+
+                </Route>
+            </Routes>
+        </BrowserRouter>
+
     )
 }
 export default App

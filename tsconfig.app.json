@@ -24,7 +24,10 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src"],
+  "include": [
+    "src",
+    "node_modules/@types/node/module.d.ts"
+  ],
 
   "baseUrl": ".",
   "paths": {

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import { useCarsStore } from "../stores/carsStore";
-import { useFiltersStore } from "../stores/filtersStore";
+import { useCarsStore } from "../../stores/carsStore.ts";
+import { useFiltersStore } from "../../stores/filtersStore.ts";
 
 const LatestAds = () => {
   const LIMIT = 8;

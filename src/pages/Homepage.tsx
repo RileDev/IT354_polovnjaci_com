@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import FiltersPanel from "../components/FiltersPanel.tsx";
-import LatestAds from "../components/LatestAds";
+import FiltersPanel from "../components/homepage/FiltersPanel.tsx";
+import LatestAds from "../components/homepage/LatestAds.tsx";
 import {api, firebaseMapRecords} from "../services/firebase.ts";
 import { useCarsStore } from "../stores/carsStore";
 import { useFiltersStore } from "../stores/filtersStore";
@@ -18,7 +18,7 @@ const Homepage = () => {
             api.get<Record<string, IBrand> | null>("brands"),
             api.get<Record<string, IModel> | null>("models"),
             api.get<Record<string, IFuel> | null>("fuels"),
-            api.get<Record<string, IBodyType> | null>("bodyTypes"),
+            api.get<Record<string, IBodyType> | null>("bodytypes"),
           ]);
 
         setBrands(firebaseMapRecords(brandsData));
@@ -32,8 +32,6 @@ const Homepage = () => {
   }, [setBodyTypes, setBrands, setFuels, setModels]);
 
   useEffect(() => {
-
-
     (async () => {
       setLoading(true);
       try {

@@ -1,12 +1,12 @@
-import { Button } from "./ui/button";
+import { Button } from "../ui/button.tsx";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "./ui/select";
-import { useFiltersStore } from "../stores/filtersStore";
+} from "../ui/select.tsx";
+import { useFiltersStore } from "../../stores/filtersStore.ts";
 
 const ALL_VALUE = "__all__";
 
@@ -51,7 +51,7 @@ const FiltersPanel = ({ onHandleSearch }: FiltersPanelProps) => {
       <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-5">
         {/* Brand */}
         <Select
-          value={selectedBrand || undefined}
+          value={selectedBrand || ""}
           onValueChange={(value) => {
             const nextValue = handleSelectValue(value);
             setSelectedBrand(nextValue);
@@ -73,7 +73,7 @@ const FiltersPanel = ({ onHandleSearch }: FiltersPanelProps) => {
 
         {/* Model */}
         <Select
-          value={selectedModel || undefined}
+          value={selectedModel || ""}
           onValueChange={(value) => setSelectedModel(handleSelectValue(value))}
           disabled={!selectedBrand}
         >
@@ -92,7 +92,7 @@ const FiltersPanel = ({ onHandleSearch }: FiltersPanelProps) => {
 
         {/* Year From */}
         <Select
-          value={yearFrom || undefined}
+          value={yearFrom || ""}
           onValueChange={(value) => setYearFrom(handleSelectValue(value))}
         >
           <SelectTrigger className="w-full border-zinc-600 bg-zinc-900 text-sm">
@@ -110,7 +110,7 @@ const FiltersPanel = ({ onHandleSearch }: FiltersPanelProps) => {
 
         {/* Fuel */}
         <Select
-          value={selectedFuel || undefined}
+          value={selectedFuel || ""}
           onValueChange={(value) => setSelectedFuel(handleSelectValue(value))}
         >
           <SelectTrigger className="w-full border-zinc-600 bg-zinc-900 text-sm">
@@ -128,7 +128,7 @@ const FiltersPanel = ({ onHandleSearch }: FiltersPanelProps) => {
 
         {/* Body Type */}
         <Select
-          value={selectedBodyType || undefined}
+          value={selectedBodyType || ""}
           onValueChange={(value) =>
             setSelectedBodyType(handleSelectValue(value))
           }
@@ -147,11 +147,11 @@ const FiltersPanel = ({ onHandleSearch }: FiltersPanelProps) => {
         </Select>
       </div>
       <div className="mt-4 flex gap-2">
-        <Button variant="secondary" onClick={handleClearFilters} className="px-6 cursor-pointer">
-          Obrisi filtere
-        </Button>
-        <Button onClick={onHandleSearch} className="px-6 cursor-pointer">
+        <Button variant="secondary" onClick={onHandleSearch} className="px-6 cursor-pointer">
           Pretrazi
+        </Button>
+        <Button onClick={handleClearFilters} className="px-6 cursor-pointer">
+          Obrisi filtere
         </Button>
       </div>
     </section>

@@ -10,8 +10,11 @@ import { useFiltersStore } from "../stores/filtersStore";
 
 const ALL_VALUE = "__all__";
 
-// @ts-ignore
-const FiltersPanel = ({onHandleSearch}) => {
+type FiltersPanelProps = {
+  onHandleSearch?: () => void;
+};
+
+const FiltersPanel = ({ onHandleSearch }: FiltersPanelProps) => {
   const {
     brands,
     models,

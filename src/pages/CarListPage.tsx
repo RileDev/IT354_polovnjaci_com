@@ -38,6 +38,11 @@ const CarListPage = () => {
     setSelectedBodyType,
     setYearFrom,
     getFilters,
+    selectedBrand,
+    selectedModel,
+    selectedFuel,
+    selectedBodyType,
+    yearFrom,
   } = useFiltersStore();
 
   const filters = useMemo<CarFilters>(() => {
@@ -146,6 +151,32 @@ const CarListPage = () => {
     setSearchParams(params, { replace: true });
   };
 
+  useEffect(() => {
+    // When the panel clears everything, also clear URL params.
+    const allEmpty =
+      !selectedBrand && !selectedModel && !selectedFuel && !selectedBodyType && !yearFrom;
+    const hasFilterParams =
+      searchParams.has("brand") ||
+      searchParams.has("brandId") ||
+      searchParams.has("model") ||
+      searchParams.has("modelId") ||
+      searchParams.has("fuel") ||
+      searchParams.has("bodyType") ||
+      searchParams.has("yearFrom");
+
+    if (allEmpty && hasFilterParams) {
+      setSearchParams(new URLSearchParams(), { replace: true });
+    }
+  }, [
+    selectedBrand,
+    selectedModel,
+    selectedFuel,
+    selectedBodyType,
+    yearFrom,
+    searchParams,
+    setSearchParams,
+  ]);
+
   const getBrandName = (brandId?: string) =>
     brandId ? brands.find((brand) => brand._id === brandId)?.name ?? brandId : "";
   const getModelName = (modelId?: string) =>
@@ -171,7 +202,7 @@ const CarListPage = () => {
 
       <div className="mb-6 flex flex-wrap gap-2">
         {activeFilters.length === 0 ? (
-          <span className="rounded-full bg-muted/30 px-3 py-1 text-sm text-muted-foreground">
+          <span className="rounded-full bg-muted/30 px-3 py-1 text-sm text-muted-background">
             Nema aktivnih filtera
           </span>
         ) : (

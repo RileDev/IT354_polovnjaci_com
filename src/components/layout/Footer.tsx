@@ -45,8 +45,8 @@ const Footer = () => {
                     <div>
                         <h3 className="font-semibold">Kontakt</h3>
                         <ul className="mt-2 space-y-1 text-sm text-zinc-400">
-                            <li><a href="#">Email: info@polovnjaci.rs</a></li>
-                            <li><a href="#">Telefon: +381 11 123 4567</a></li>
+                            <li><a href="mailto:info@polovnjaci.rs" className="hover:text-zinc-100 transition-colors">Email: info@polovnjaci.rs</a></li>
+                            <li><a href="tel:+381 11 123 4567" className="hover:text-zinc-100 transition-colors">Telefon: +381 11 123 4567</a></li>
                         </ul>
                     </div>
                 </div>

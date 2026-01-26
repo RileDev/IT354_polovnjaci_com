@@ -1,5 +1,13 @@
 const firebaseUrl = import.meta.env.VITE_FIREBASE_URL as string
 
+export const firebaseMapRecords = <T extends { _id?: string }>(
+    data: Record<string, T> | null
+) =>
+    data ? Object.entries(data).map(([id, item]) => ({
+            ...item,
+            _id: item._id ?? id,
+        })) : [];
+
 export async function request<T>(path: string, options: RequestInit = {}) : Promise<T>{
     const headers = {
         "Content-Type" : "application/json",

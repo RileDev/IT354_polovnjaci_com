@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import FiltersPanel from "../components/FiltersPanel.tsx";
 import LatestAds from "../components/LatestAds";
-import { api } from "../services/firebase.ts";
+import {api, firebaseMapRecords} from "../services/firebase.ts";
 import { useCarsStore } from "../stores/carsStore";
 import { useFiltersStore } from "../stores/filtersStore";
 import type { IBodyType, IBrand, ICar, IFuel, IModel } from "../types";
@@ -11,17 +11,7 @@ const Homepage = () => {
   const { setCars, setLoading } = useCarsStore();
 
   useEffect(() => {
-    const mapRecords = <T extends { _id?: string }>(
-      data: Record<string, T> | null
-    ) =>
-      data
-        ? Object.entries(data).map(([id, item]) => ({
-            ...item,
-            _id: item._id ?? id,
-          }))
-        : [];
-
-    (async () => {
+      (async () => {
       try {
         const [brandsData, modelsData, fuelsData, bodyTypesData] =
           await Promise.all([
@@ -31,10 +21,10 @@ const Homepage = () => {
             api.get<Record<string, IBodyType> | null>("bodyTypes"),
           ]);
 
-        setBrands(mapRecords(brandsData));
-        setModels(mapRecords(modelsData));
-        setFuels(mapRecords(fuelsData));
-        setBodyTypes(mapRecords(bodyTypesData));
+        setBrands(firebaseMapRecords(brandsData));
+        setModels(firebaseMapRecords(modelsData));
+        setFuels(firebaseMapRecords(fuelsData));
+        setBodyTypes(firebaseMapRecords(bodyTypesData));
       } catch (e) {
         console.log(e);
       }
@@ -42,21 +32,13 @@ const Homepage = () => {
   }, [setBodyTypes, setBrands, setFuels, setModels]);
 
   useEffect(() => {
-    const mapRecords = <T extends { _id?: string }>(
-      data: Record<string, T> | null
-    ) =>
-      data
-        ? Object.entries(data).map(([id, item]) => ({
-            ...item,
-            _id: item._id ?? id,
-          }))
-        : [];
+
 
     (async () => {
       setLoading(true);
       try {
         const carsData = await api.get<Record<string, ICar> | null>("cars");
-        setCars(mapRecords(carsData));
+        setCars(firebaseMapRecords(carsData));
       } catch (e) {
         console.log(e);
       } finally {

@@ -1,97 +1,158 @@
-import React from 'react'
+import { Button } from "./ui/button";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "./ui/select";
+import { useFiltersStore } from "../stores/filtersStore";
 
-const FiltersPanel = () => {
-    return (
-        <section className="mb-8 rounded-lg border border-zinc-700 bg-zinc-800 p-6 shadow-sm">
-            <h2 className="mb-4 text-xl font-semibold">Pretraga</h2>
-            <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-5">
-                {/* Brand */}
-                <select
-                    className="rounded-md border border-zinc-600 bg-zinc-900 px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
-                    value="Brand_Test"
-                    onChange={(e) => {
-                        setSelectedBrand(e.target.value);
-                        setSelectedModel(""); // Reset model when brand changes
-                    }}
-                >
-                    <option value="">Sve marke</option>
-                    {brands.map((brand) => (
-                        <option key={brand._id} value={brand._id}>
-                            {brand.name}
-                        </option>
-                    ))}
-                </select>
+const ALL_VALUE = "__all__";
 
-                {/* Model */}
-                <select
-                    className="rounded-md border border-zinc-600 bg-zinc-900 px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500 disabled:opacity-50"
-                    value={selectedModel}
-                    onChange={(e) => setSelectedModel(e.target.value)}
-                    disabled={!selectedBrand}
-                >
-                    <option value="">Svi modeli</option>
-                    {models.map((model) => (
-                        <option key={model._id} value={model._id}>
-                            {model.name}
-                        </option>
-                    ))}
-                </select>
+// @ts-ignore
+const FiltersPanel = ({onHandleSearch}) => {
+  const {
+    brands,
+    models,
+    fuels,
+    bodyTypes,
+    years,
+    selectedBrand,
+    selectedModel,
+    selectedFuel,
+    selectedBodyType,
+    yearFrom,
+    setSelectedBrand,
+    setSelectedModel,
+    setSelectedFuel,
+    setSelectedBodyType,
+    setYearFrom,
+    clearFilters,
+  } = useFiltersStore();
 
-                {/* Year From */}
-                <select
-                    className="rounded-md border border-zinc-600 bg-zinc-900 px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
-                    value={yearFrom}
-                    onChange={(e) => setYearFrom(e.target.value)}
-                >
-                    <option value="">Godište od</option>
-                    {years.map((year) => (
-                        <option key={year} value={year}>
-                            {year}
-                        </option>
-                    ))}
-                </select>
+  const filteredModels = selectedBrand
+    ? models.filter((model) => model.brandId === selectedBrand)
+    : models;
 
-                {/* Fuel */}
-                <select
-                    className="rounded-md border border-zinc-600 bg-zinc-900 px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
-                    value={selectedFuel}
-                    onChange={(e) => setSelectedFuel(e.target.value)}
-                >
-                    <option value="">Gorivo</option>
-                    {fuels.map((fuel) => (
-                        <option key={fuel._id} value={fuel._id}>
-                            {fuel.name}
-                        </option>
-                    ))}
-                </select>
+  const handleClearFilters = () => {
+    clearFilters();
+  };
 
-                {/* Body Type */}
-                <select
-                    className="rounded-md border border-zinc-600 bg-zinc-900 px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
-                    value={selectedBodyType}
-                    onChange={(e) => setSelectedBodyType(e.target.value)}
-                >
-                    <option value="">Karoserija</option>
-                    {bodyTypes.map((bt) => (
-                        <option key={bt._id} value={bt._id}>
-                            {bt.name}
-                        </option>
-                    ))}
-                </select>
-            </div>
-            <div className="mt-4 flex gap-2">
-                <Button
-                    variant="secondary"
-                    onClick={handleClearFilters}
-                    className="px-6"
-                >
-                    Obriši filtere
-                </Button>
-                <Button onClick={handleSearch} className="px-6">
-                    Pretraži
-                </Button>
-            </div>
-        </section>
-    )
-}
-export default FiltersPanel
+  const handleSelectValue = (value: string) =>
+    value === ALL_VALUE ? "" : value;
+
+  return (
+    <section className="mb-8 rounded-lg border border-zinc-700 bg-zinc-800 p-6 shadow-sm">
+      <h2 className="mb-4 text-xl font-semibold">Pretraga</h2>
+      <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-5">
+        {/* Brand */}
+        <Select
+          value={selectedBrand || undefined}
+          onValueChange={(value) => {
+            const nextValue = handleSelectValue(value);
+            setSelectedBrand(nextValue);
+            setSelectedModel("");
+          }}
+        >
+          <SelectTrigger className="w-full border-zinc-600 bg-zinc-900 text-sm">
+            <SelectValue placeholder="Sve marke" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value={ALL_VALUE}>Sve marke</SelectItem>
+            {brands.map((brand) => (
+              <SelectItem key={brand._id} value={brand._id}>
+                {brand.name}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+
+        {/* Model */}
+        <Select
+          value={selectedModel || undefined}
+          onValueChange={(value) => setSelectedModel(handleSelectValue(value))}
+          disabled={!selectedBrand}
+        >
+          <SelectTrigger className="w-full border-zinc-600 bg-zinc-900 text-sm">
+            <SelectValue placeholder="Svi modeli" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value={ALL_VALUE}>Svi modeli</SelectItem>
+            {filteredModels.map((model) => (
+              <SelectItem key={model._id} value={model._id}>
+                {model.name}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+
+        {/* Year From */}
+        <Select
+          value={yearFrom || undefined}
+          onValueChange={(value) => setYearFrom(handleSelectValue(value))}
+        >
+          <SelectTrigger className="w-full border-zinc-600 bg-zinc-900 text-sm">
+            <SelectValue placeholder="Godiste od" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value={ALL_VALUE}>Godiste od</SelectItem>
+            {years.map((year) => (
+              <SelectItem key={year} value={String(year)}>
+                {year}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+
+        {/* Fuel */}
+        <Select
+          value={selectedFuel || undefined}
+          onValueChange={(value) => setSelectedFuel(handleSelectValue(value))}
+        >
+          <SelectTrigger className="w-full border-zinc-600 bg-zinc-900 text-sm">
+            <SelectValue placeholder="Gorivo" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value={ALL_VALUE}>Gorivo</SelectItem>
+            {fuels.map((fuel) => (
+              <SelectItem key={fuel._id} value={fuel._id}>
+                {fuel.name}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+
+        {/* Body Type */}
+        <Select
+          value={selectedBodyType || undefined}
+          onValueChange={(value) =>
+            setSelectedBodyType(handleSelectValue(value))
+          }
+        >
+          <SelectTrigger className="w-full border-zinc-600 bg-zinc-900 text-sm">
+            <SelectValue placeholder="Karoserija" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value={ALL_VALUE}>Karoserija</SelectItem>
+            {bodyTypes.map((bt) => (
+              <SelectItem key={bt._id} value={bt._id}>
+                {bt.name}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+      <div className="mt-4 flex gap-2">
+        <Button variant="secondary" onClick={handleClearFilters} className="px-6 cursor-pointer">
+          Obrisi filtere
+        </Button>
+        <Button onClick={onHandleSearch} className="px-6 cursor-pointer">
+          Pretrazi
+        </Button>
+      </div>
+    </section>
+  );
+};
+
+export default FiltersPanel;

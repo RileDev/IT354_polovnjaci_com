@@ -1,36 +1,53 @@
-import {api} from "../services/firebase.ts";
-import type {ICar} from "../types";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
+import FiltersPanel from "../components/FiltersPanel.tsx";
+import { api } from "../services/firebase.ts";
+import { useFiltersStore } from "../stores/filtersStore";
+import type { IBodyType, IBrand, ICar, IFuel, IModel } from "../types";
 
 const Homepage = () => {
+  const { setBrands, setModels, setFuels, setBodyTypes, getFilters } = useFiltersStore();
 
-    const [cars, setCars] = useState<ICar[]>()
+  useEffect(() => {
+    const mapRecords = <T extends { _id?: string }>(
+      data: Record<string, T> | null
+    ) =>
+      data
+        ? Object.entries(data).map(([id, item]) => ({
+            ...item,
+            _id: item._id ?? id,
+          }))
+        : [];
 
-    useEffect(() => {
-        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-        (async () => {
-            try{
-                const data = await api.get<Record<string, ICar> | null>("cars")
+    (async () => {
+      try {
+        const [brandsData, modelsData, fuelsData, bodyTypesData] =
+          await Promise.all([
+            api.get<Record<string, IBrand> | null>("brands"),
+            api.get<Record<string, IModel> | null>("models"),
+            api.get<Record<string, IFuel> | null>("fuels"),
+            api.get<Record<string, IBodyType> | null>("bodyTypes"),
+          ]);
 
-                const list = data
-                    ? Object.entries(data).map(([id, car]) => ({
-                        ...car,
-                        _id: car._id ?? id, // optional: fall back to firebase key
-                    }))
-                    : [];
+        setBrands(mapRecords(brandsData));
+        setModels(mapRecords(modelsData));
+        setFuels(mapRecords(fuelsData));
+        setBodyTypes(mapRecords(bodyTypesData));
+      } catch (e) {
+        console.log(e);
+      }
+    })();
+  }, [setBodyTypes, setBrands, setFuels, setModels]);
 
-                setCars(list);
-            }catch (e){
-                console.log(e)
-            }
-        })()
-    }, [])
-    
-    return (
-        <div className="container mx-auto px-4 py-8">
-            <h1 className="mb-8 text-3xl font-bold">Pronađite savršen automobil</h1>
-            {console.log(cars)}
-        </div>
-    )
-}
-export default Homepage
+  const handleSearch = () => {
+      console.log(getFilters())
+  }
+
+  return (
+    <div className="container mx-auto px-4 py-8">
+      <h1 className="mb-8 text-3xl font-bold">Pronadjite savrsen automobil</h1>
+      <FiltersPanel onHandleSearch={handleSearch}/>
+    </div>
+  );
+};
+
+export default Homepage;

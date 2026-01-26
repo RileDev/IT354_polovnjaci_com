@@ -1,6 +1,7 @@
 import {BrowserRouter, Route, Routes} from "react-router";
 import Homepage from "./pages/Homepage.tsx";
 import Layout from "./components/layout/Layout.tsx";
+import CarListPage from "./pages/CarListPage.tsx";
 
 const App = () => {
     return (
@@ -8,6 +9,7 @@ const App = () => {
             <Routes>
                 <Route path="/" element={<Layout />}>
                     <Route index element={<Homepage />}/>
+                    <Route path="oglasi" element={<CarListPage />}/>
 
                 </Route>
             </Routes>

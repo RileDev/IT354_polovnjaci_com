@@ -5,8 +5,10 @@ import {api, firebaseMapRecords} from "../services/firebase.ts";
 import { useCarsStore } from "../stores/carsStore";
 import { useFiltersStore } from "../stores/filtersStore";
 import type { IBodyType, IBrand, ICar, IFuel, IModel } from "../types";
+import {useNavigate} from "react-router";
 
 const Homepage = () => {
+    const navigate = useNavigate()
   const { setBrands, setModels, setFuels, setBodyTypes, getFilters } = useFiltersStore();
   const { setCars, setLoading } = useCarsStore();
 
@@ -46,7 +48,14 @@ const Homepage = () => {
   }, [setCars, setLoading]);
 
   const handleSearch = () => {
-    console.log(getFilters());
+      const filters = getFilters()
+      const params = new URLSearchParams()
+      Object.entries(filters).map(([key, value]) =>
+      {
+          params.append(key, String(value))
+      })
+
+      navigate(`/oglasi?${params.toString()}`)
   };
 
   return (

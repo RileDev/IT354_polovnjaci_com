@@ -8,11 +8,14 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
-import {useEffect, useState} from "react";
+import { useEffect, useRef, useState } from "react";
 import {api, firebaseMapRecords} from "../services/firebase_api.ts";
 import type {IBodyType, IBrand, IFuel, IModel} from "../types";
+import Dropzone from "react-dropzone";
+import {useAuthStore} from "../stores/authStore.ts";
 
 const UploadCarPage = () => {
+  const {token} = useAuthStore()
   const [brands, setBrands] = useState<IBrand[]>([])
   const [models, setModels] = useState<IModel[]>([])
   const [fuels, setFuels] = useState<IFuel[]>([])
@@ -37,6 +40,9 @@ const UploadCarPage = () => {
       hasWarranty: false,
     },
   })
+  const [imageFiles, setImageFiles] = useState<File[]>([])
+  const [imagePreviews, setImagePreviews] = useState<string[]>([])
+  const dragIndexRef = useRef<number | null>(null)
 
   useEffect(()=>{
     const loadFilterData = async () => {
@@ -60,15 +66,57 @@ const UploadCarPage = () => {
     void loadFilterData();
   }, [])
 
+  useEffect(() => {
+    const urls = imageFiles.map((file) => URL.createObjectURL(file));
+    setImagePreviews(urls);
+
+    return () => {
+      urls.forEach((url) => URL.revokeObjectURL(url));
+    };
+  }, [imageFiles]);
+
   const filteredModels = form.brandId
     ? models.filter((model) => model.brandId === form.brandId)
     : models;
+
+  const handleRemoveImage = (index: number) => {
+    setImageFiles((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  const handleReorder = (fromIndex: number, toIndex: number) => {
+    if (fromIndex === toIndex) return;
+    setImageFiles((prev) => {
+      const next = [...prev];
+      const [moved] = next.splice(fromIndex, 1);
+      if (!moved) return prev;
+      next.splice(toIndex, 0, moved);
+      return next;
+    });
+  };
+
+  const handleFormSubmit = async(e) => {
+    e.preventDefault()
+    if(Object.values(form).some(i => i.length == 0) || imageFiles.length === 0) {
+      alert("Sva polja moraju biti uneta uključujući i slike!!!")
+      return
+    }
+
+    // await api.post("cars", {
+    //   ...form,
+    //   images: imageFiles.map(({path}) => path)
+    // }, token)
+
+    console.log({
+      ...form,
+      images: imageFiles.map(({path}) => path)
+    })
+  }
 
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="mb-6 text-2xl font-bold">Postavi novi oglas</h1>
 
-      <form className="mx-auto max-w-2xl space-y-6">
+      <form className="mx-auto max-w-2xl space-y-6" onSubmit={handleFormSubmit}>
         {/* Basic Info */}
         <div className="rounded-lg border border-zinc-700 bg-zinc-800 p-6 shadow-lg">
           <h2 className="mb-4 font-semibold">Osnovne informacije</h2>
@@ -305,11 +353,77 @@ const UploadCarPage = () => {
         {/* Images */}
         <div className="rounded-lg border border-zinc-700 bg-zinc-800 p-6 shadow-lg">
           <h2 className="mb-4 font-semibold">Slike</h2>
-          <div className="rounded-lg border-2 border-dashed border-zinc-700 p-8 text-center">
-            <p className="text-zinc-400">
-              Prevucite slike ovde ili kliknite za izbor
-            </p>
-          </div>
+          <Dropzone
+            accept={{
+              "image/jpeg": [".jpg", ".jpeg"],
+              "image/png": [".png"],
+            }}
+            multiple
+            onDrop={(acceptedFiles, _fileRejections, event) => {
+              if (event?.dataTransfer?.types?.includes("text/polovnjaci-reorder")) {
+                return;
+              }
+              if (acceptedFiles.length === 0) return;
+              setImageFiles((prev) => [...prev, ...acceptedFiles]);
+            }}
+          >
+            {({ getRootProps, getInputProps }) => (
+              <div
+                {...getRootProps({
+                  className:
+                    "rounded-lg border-2 border-dashed border-zinc-700 p-8 text-center",
+                })}
+              >
+                <input {...getInputProps()} />
+                {imagePreviews.length === 0 ? (
+                  <p className="text-zinc-400">
+                    Prevucite slike ovde ili kliknite za izbor
+                  </p>
+                ) : (
+                  <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-3">
+                    {imagePreviews.map((src, index) => (
+                      <div
+                        key={`${src}-${index}`}
+                        className="group relative aspect-video overflow-hidden rounded-md border border-zinc-700 bg-zinc-900"
+                        draggable
+                        onDragStart={(e) => {
+                          dragIndexRef.current = index;
+                          e.dataTransfer.setData("text/polovnjaci-reorder", "1");
+                        }}
+                        onDragOver={(e) => e.preventDefault()}
+                        onDrop={(e) => {
+                          e.preventDefault();
+                          const fromIndex = dragIndexRef.current;
+                          if (fromIndex === null) return;
+                          handleReorder(fromIndex, index);
+                          dragIndexRef.current = null;
+                        }}
+                        onDragEnd={() => {
+                          dragIndexRef.current = null;
+                        }}
+                      >
+                        <img
+                          src={src}
+                          alt={`Preview ${index + 1}`}
+                          className="h-full w-full object-cover"
+                        />
+                        <button
+                          type="button"
+                          className="absolute right-2 top-2 rounded-full bg-black/70 px-2 py-1 text-xs font-semibold text-white opacity-0 transition group-hover:opacity-100"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleRemoveImage(index);
+                          }}
+                        >
+                          Ukloni
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
+          </Dropzone>
         </div>
 
         <Button variant="secondary" type="submit" className="w-full cursor-pointer" size="lg">

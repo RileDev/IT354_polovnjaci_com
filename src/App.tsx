@@ -16,6 +16,7 @@ import UploadCarPage from "./pages/UploadCarPage.tsx";
 import MyAdsPage from "./pages/MyAdsPage.tsx";
 import ProtectedRoute from "./components/ProtectedRoute.tsx";
 import PublicRoute from "./components/PublicRoute.tsx";
+import PasswordResetPage from "./pages/PasswordResetPage.tsx";
 
 const mapAuthUser = (user: FirebaseUser | null): IUser | null =>
   user
@@ -67,6 +68,7 @@ const App = () => {
                 <Route path="profil" element={<UserProfilePage />} />
               <Route path="postavi-oglas" element={<UploadCarPage />} />
               <Route path="moji-oglasi" element={<MyAdsPage />} />
+              <Route path="reset-sifre" element={<PasswordResetPage />} />
             </Route>
         </Route>
       </Routes>

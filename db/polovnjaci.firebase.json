@@ -1,0 +1,1063 @@
+{
+  "brands": {
+    "6962687f5cb5155fff68f63a": {
+      "name": "Audi"
+    },
+    "6962687f5cb5155fff68f63b": {
+      "name": "BMW"
+    },
+    "6962687f5cb5155fff68f63c": {
+      "name": "Mercedes-Benz"
+    },
+    "6962687f5cb5155fff68f63d": {
+      "name": "Volkswagen"
+    },
+    "6962687f5cb5155fff68f63e": {
+      "name": "Opel"
+    },
+    "6962687f5cb5155fff68f63f": {
+      "name": "Ford"
+    },
+    "6962687f5cb5155fff68f640": {
+      "name": "Renault"
+    },
+    "6962687f5cb5155fff68f641": {
+      "name": "Peugeot"
+    },
+    "6962687f5cb5155fff68f642": {
+      "name": "Škoda"
+    },
+    "6962687f5cb5155fff68f643": {
+      "name": "Fiat"
+    }
+  },
+  "models": {
+    "6962687f5cb5155fff68f645": {
+      "brandId": "6962687f5cb5155fff68f63a",
+      "name": "A3"
+    },
+    "6962687f5cb5155fff68f646": {
+      "brandId": "6962687f5cb5155fff68f63a",
+      "name": "A4"
+    },
+    "6962687f5cb5155fff68f647": {
+      "brandId": "6962687f5cb5155fff68f63a",
+      "name": "A6"
+    },
+    "6962687f5cb5155fff68f648": {
+      "brandId": "6962687f5cb5155fff68f63a",
+      "name": "Q5"
+    },
+    "6962687f5cb5155fff68f649": {
+      "brandId": "6962687f5cb5155fff68f63a",
+      "name": "Q7"
+    },
+    "6962687f5cb5155fff68f64a": {
+      "brandId": "6962687f5cb5155fff68f63b",
+      "name": "Serija 3"
+    },
+    "6962687f5cb5155fff68f64b": {
+      "brandId": "6962687f5cb5155fff68f63b",
+      "name": "Serija 5"
+    },
+    "6962687f5cb5155fff68f64c": {
+      "brandId": "6962687f5cb5155fff68f63b",
+      "name": "X3"
+    },
+    "6962687f5cb5155fff68f64d": {
+      "brandId": "6962687f5cb5155fff68f63b",
+      "name": "X5"
+    },
+    "6962687f5cb5155fff68f64e": {
+      "brandId": "6962687f5cb5155fff68f63b",
+      "name": "Serija 1"
+    },
+    "6962687f5cb5155fff68f64f": {
+      "brandId": "6962687f5cb5155fff68f63c",
+      "name": "C klasa"
+    },
+    "6962687f5cb5155fff68f650": {
+      "brandId": "6962687f5cb5155fff68f63c",
+      "name": "E klasa"
+    },
+    "6962687f5cb5155fff68f651": {
+      "brandId": "6962687f5cb5155fff68f63c",
+      "name": "GLC"
+    },
+    "6962687f5cb5155fff68f652": {
+      "brandId": "6962687f5cb5155fff68f63c",
+      "name": "A klasa"
+    },
+    "6962687f5cb5155fff68f653": {
+      "brandId": "6962687f5cb5155fff68f63c",
+      "name": "GLA"
+    },
+    "6962687f5cb5155fff68f654": {
+      "brandId": "6962687f5cb5155fff68f63d",
+      "name": "Golf"
+    },
+    "6962687f5cb5155fff68f655": {
+      "brandId": "6962687f5cb5155fff68f63d",
+      "name": "Passat"
+    },
+    "6962687f5cb5155fff68f656": {
+      "brandId": "6962687f5cb5155fff68f63d",
+      "name": "Tiguan"
+    },
+    "6962687f5cb5155fff68f657": {
+      "brandId": "6962687f5cb5155fff68f63d",
+      "name": "Polo"
+    },
+    "6962687f5cb5155fff68f658": {
+      "brandId": "6962687f5cb5155fff68f63d",
+      "name": "Arteon"
+    },
+    "6962687f5cb5155fff68f659": {
+      "brandId": "6962687f5cb5155fff68f63e",
+      "name": "Astra"
+    },
+    "6962687f5cb5155fff68f65a": {
+      "brandId": "6962687f5cb5155fff68f63e",
+      "name": "Corsa"
+    },
+    "6962687f5cb5155fff68f65b": {
+      "brandId": "6962687f5cb5155fff68f63e",
+      "name": "Insignia"
+    },
+    "6962687f5cb5155fff68f65c": {
+      "brandId": "6962687f5cb5155fff68f63e",
+      "name": "Mokka"
+    },
+    "6962687f5cb5155fff68f65d": {
+      "brandId": "6962687f5cb5155fff68f63e",
+      "name": "Crossland"
+    },
+    "6962687f5cb5155fff68f65e": {
+      "brandId": "6962687f5cb5155fff68f63f",
+      "name": "Focus"
+    },
+    "6962687f5cb5155fff68f65f": {
+      "brandId": "6962687f5cb5155fff68f63f",
+      "name": "Fiesta"
+    },
+    "6962687f5cb5155fff68f660": {
+      "brandId": "6962687f5cb5155fff68f63f",
+      "name": "Kuga"
+    },
+    "6962687f5cb5155fff68f661": {
+      "brandId": "6962687f5cb5155fff68f63f",
+      "name": "Mondeo"
+    },
+    "6962687f5cb5155fff68f662": {
+      "brandId": "6962687f5cb5155fff68f63f",
+      "name": "Puma"
+    },
+    "6962687f5cb5155fff68f663": {
+      "brandId": "6962687f5cb5155fff68f640",
+      "name": "Clio"
+    },
+    "6962687f5cb5155fff68f664": {
+      "brandId": "6962687f5cb5155fff68f640",
+      "name": "Megane"
+    },
+    "6962687f5cb5155fff68f665": {
+      "brandId": "6962687f5cb5155fff68f640",
+      "name": "Captur"
+    },
+    "6962687f5cb5155fff68f666": {
+      "brandId": "6962687f5cb5155fff68f640",
+      "name": "Kadjar"
+    },
+    "6962687f5cb5155fff68f667": {
+      "brandId": "6962687f5cb5155fff68f640",
+      "name": "Scenic"
+    },
+    "6962687f5cb5155fff68f668": {
+      "brandId": "6962687f5cb5155fff68f641",
+      "name": "208"
+    },
+    "6962687f5cb5155fff68f669": {
+      "brandId": "6962687f5cb5155fff68f641",
+      "name": "308"
+    },
+    "6962687f5cb5155fff68f66a": {
+      "brandId": "6962687f5cb5155fff68f641",
+      "name": "3008"
+    },
+    "6962687f5cb5155fff68f66b": {
+      "brandId": "6962687f5cb5155fff68f641",
+      "name": "508"
+    },
+    "6962687f5cb5155fff68f66c": {
+      "brandId": "6962687f5cb5155fff68f641",
+      "name": "2008"
+    },
+    "6962687f5cb5155fff68f66d": {
+      "brandId": "6962687f5cb5155fff68f642",
+      "name": "Octavia"
+    },
+    "6962687f5cb5155fff68f66e": {
+      "brandId": "6962687f5cb5155fff68f642",
+      "name": "Fabia"
+    },
+    "6962687f5cb5155fff68f66f": {
+      "brandId": "6962687f5cb5155fff68f642",
+      "name": "Superb"
+    },
+    "6962687f5cb5155fff68f670": {
+      "brandId": "6962687f5cb5155fff68f642",
+      "name": "Kodiaq"
+    },
+    "6962687f5cb5155fff68f671": {
+      "brandId": "6962687f5cb5155fff68f642",
+      "name": "Karoq"
+    },
+    "6962687f5cb5155fff68f672": {
+      "brandId": "6962687f5cb5155fff68f643",
+      "name": "500"
+    },
+    "6962687f5cb5155fff68f673": {
+      "brandId": "6962687f5cb5155fff68f643",
+      "name": "Punto"
+    },
+    "6962687f5cb5155fff68f674": {
+      "brandId": "6962687f5cb5155fff68f643",
+      "name": "Tipo"
+    },
+    "6962687f5cb5155fff68f675": {
+      "brandId": "6962687f5cb5155fff68f643",
+      "name": "Panda"
+    },
+    "6962687f5cb5155fff68f676": {
+      "brandId": "6962687f5cb5155fff68f643",
+      "name": "500X"
+    }
+  },
+  "bodytypes": {
+    "6962687f5cb5155fff68f67f": {
+      "name": "Limuzina"
+    },
+    "6962687f5cb5155fff68f680": {
+      "name": "Hečbek"
+    },
+    "6962687f5cb5155fff68f681": {
+      "name": "Karavan"
+    },
+    "6962687f5cb5155fff68f682": {
+      "name": "Kupe"
+    },
+    "6962687f5cb5155fff68f683": {
+      "name": "Kabriolet"
+    },
+    "6962687f5cb5155fff68f684": {
+      "name": "Mini-van"
+    },
+    "6962687f5cb5155fff68f685": {
+      "name": "SUV / Terensko vozilo"
+    },
+    "6962687f5cb5155fff68f686": {
+      "name": "Pickup"
+    }
+  },
+  "fuels": {
+    "6962687f5cb5155fff68f678": {
+      "name": "Benzin"
+    },
+    "6962687f5cb5155fff68f679": {
+      "name": "Dizel"
+    },
+    "6962687f5cb5155fff68f67a": {
+      "name": "Električni pogon"
+    },
+    "6962687f5cb5155fff68f67b": {
+      "name": "Hibridni pogon"
+    },
+    "6962687f5cb5155fff68f67c": {
+      "name": "Benzin + Gas (TNG)"
+    },
+    "6962687f5cb5155fff68f67d": {
+      "name": "Metan (CNG)"
+    }
+  },
+  "users": {
+    "6962687f5cb5155fff68f688": {
+      "name": "Marko Marković",
+      "username": "marko123",
+      "email": "marko@example.com",
+      "password": "$2b$10$Nl7ZusRyYhMfLYfSp0s8zORZalmuN3RLPmAUg7CBTFvL7V8MGRh3q",
+      "phoneNum": "+381601234567",
+      "city": "Beograd",
+      "role": "user",
+      "isDeleted": 0,
+      "createdAt": "2026-01-10T14:55:59.452Z",
+      "updatedAt": "2026-01-10T14:55:59.452Z"
+    },
+    "6962687f5cb5155fff68f689": {
+      "name": "Jovan Jovanović",
+      "username": "jovan_auto",
+      "email": "jovan@example.com",
+      "password": "$2b$10$RnbTOyQ.DWGLHTD8ZsKaw.6hKZkLs8.DFSkYxjGSSzkIlftfJj/Xm",
+      "phoneNum": "+381629876543",
+      "city": "Novi Sad",
+      "role": "user",
+      "isDeleted": 0,
+      "createdAt": "2026-01-10T14:55:59.452Z",
+      "updatedAt": "2026-01-10T14:55:59.452Z"
+    },
+    "6962687f5cb5155fff68f68a": {
+      "name": "Ana Anić",
+      "username": "ana_cars",
+      "email": "ana@example.com",
+      "password": "$2b$10$h9LoTpHY0Dj3lW1F4m2ROOZQhyWjo55UbycpoJMin2mtMR6HW7Gkm",
+      "phoneNum": "+381641112233",
+      "city": "Niš",
+      "role": "user",
+      "isDeleted": 0,
+      "createdAt": "2026-01-10T14:55:59.452Z",
+      "updatedAt": "2026-01-10T14:55:59.452Z"
+    },
+    "6962687f5cb5155fff68f68b": {
+      "name": "Petar Petrović",
+      "username": "petar_p",
+      "email": "petar@example.com",
+      "password": "$2b$10$y9fqrp8ejgoBMjsH45KqTe9jYW0O3FgB1dkLtaLdfTmhz4jtRjLQW",
+      "phoneNum": "+381655556666",
+      "city": "Kragujevac",
+      "role": "user",
+      "isDeleted": 0,
+      "createdAt": "2026-01-10T14:55:59.452Z",
+      "updatedAt": "2026-01-10T14:55:59.452Z"
+    }
+  },
+  "cars": {
+    "6962687f5cb5155fff68f68d": {
+      "sellerId": "6962687f5cb5155fff68f688",
+      "title": "Fiat 500 2012",
+      "brandId": "6962687f5cb5155fff68f643",
+      "modelId": "6962687f5cb5155fff68f672",
+      "price": 3708,
+      "currency": "EUR",
+      "year": 2012,
+      "fuel": "6962687f5cb5155fff68f679",
+      "engineDisplacement": 1800,
+      "engineType": 110,
+      "bodyType": "6962687f5cb5155fff68f684",
+      "mileage": 123496,
+      "description": "Automobil u odličnom stanju, redovno servisiran kod ovlašćenog servisa. Poseduje kompletnu servisnu knjižicu.",
+      "noOwners": 1,
+      "images": [
+        "https://picsum.photos/seed/Fiat0/800/600",
+        "https://picsum.photos/seed/5000/800/600"
+      ],
+      "features": {
+        "isCredit": false,
+        "isLeasing": false,
+        "hasWarranty": false
+      },
+      "createdAt": "2026-01-10T14:55:59.459Z",
+      "updatedAt": "2026-01-10T14:55:59.459Z"
+    },
+    "6962687f5cb5155fff68f68e": {
+      "sellerId": "6962687f5cb5155fff68f688",
+      "title": "Volkswagen Arteon 2016",
+      "brandId": "6962687f5cb5155fff68f63d",
+      "modelId": "6962687f5cb5155fff68f658",
+      "price": 39568,
+      "currency": "EUR",
+      "year": 2016,
+      "fuel": "6962687f5cb5155fff68f679",
+      "engineDisplacement": 1800,
+      "engineType": 220,
+      "bodyType": "6962687f5cb5155fff68f685",
+      "mileage": 167965,
+      "description": "Hitna prodaja zbog selidbe. Cena fixna, bez zamene. Moguć dogovor oko isplate.",
+      "noOwners": 4,
+      "images": [
+        "https://picsum.photos/seed/Volkswagen1/800/600",
+        "https://picsum.photos/seed/Arteon1/800/600"
+      ],
+      "features": {
+        "isCredit": false,
+        "isLeasing": false,
+        "hasWarranty": true
+      },
+      "createdAt": "2026-01-10T14:55:59.460Z",
+      "updatedAt": "2026-01-10T14:55:59.460Z"
+    },
+    "6962687f5cb5155fff68f68f": {
+      "sellerId": "6962687f5cb5155fff68f688",
+      "title": "Fiat Panda 2021",
+      "brandId": "6962687f5cb5155fff68f643",
+      "modelId": "6962687f5cb5155fff68f675",
+      "price": 14130,
+      "currency": "EUR",
+      "year": 2021,
+      "fuel": "6962687f5cb5155fff68f67b",
+      "engineDisplacement": 2000,
+      "engineType": 250,
+      "bodyType": "6962687f5cb5155fff68f682",
+      "mileage": 113060,
+      "description": "Očuvan primerak, garažiran. Vlasnik nekadašnji stariji gospodin. Nema tragova udesa.",
+      "noOwners": 3,
+      "images": [
+        "https://picsum.photos/seed/Fiat2/800/600",
+        "https://picsum.photos/seed/Panda2/800/600"
+      ],
+      "features": {
+        "isCredit": true,
+        "isLeasing": false,
+        "hasWarranty": false
+      },
+      "createdAt": "2026-01-10T14:55:59.460Z",
+      "updatedAt": "2026-01-10T14:55:59.460Z"
+    },
+    "6962687f5cb5155fff68f690": {
+      "sellerId": "6962687f5cb5155fff68f688",
+      "title": "Mercedes-Benz E klasa 2011",
+      "brandId": "6962687f5cb5155fff68f63c",
+      "modelId": "6962687f5cb5155fff68f650",
+      "price": 22415,
+      "currency": "EUR",
+      "year": 2011,
+      "fuel": "6962687f5cb5155fff68f678",
+      "engineDisplacement": 3000,
+      "engineType": 220,
+      "bodyType": "6962687f5cb5155fff68f684",
+      "mileage": 121521,
+      "description": "Hitna prodaja zbog selidbe. Cena fixna, bez zamene. Moguć dogovor oko isplate.",
+      "noOwners": 3,
+      "images": [
+        "https://picsum.photos/seed/Mercedes-Benz3/800/600",
+        "https://picsum.photos/seed/E klasa3/800/600"
+      ],
+      "features": {
+        "isCredit": true,
+        "isLeasing": false,
+        "hasWarranty": false
+      },
+      "createdAt": "2026-01-10T14:55:59.460Z",
+      "updatedAt": "2026-01-10T14:55:59.460Z"
+    },
+    "6962687f5cb5155fff68f691": {
+      "sellerId": "6962687f5cb5155fff68f688",
+      "title": "Audi Q7 2024",
+      "brandId": "6962687f5cb5155fff68f63a",
+      "modelId": "6962687f5cb5155fff68f649",
+      "price": 23094,
+      "currency": "EUR",
+      "year": 2024,
+      "fuel": "6962687f5cb5155fff68f67d",
+      "engineDisplacement": 2500,
+      "engineType": 130,
+      "bodyType": "6962687f5cb5155fff68f67f",
+      "mileage": 33946,
+      "description": "Prvi vlasnik u Srbiji. Kupljen nov u salonu. Svi servisi urađeni na vreme.",
+      "noOwners": 2,
+      "images": [
+        "https://picsum.photos/seed/Audi4/800/600",
+        "https://picsum.photos/seed/Q74/800/600"
+      ],
+      "features": {
+        "isCredit": false,
+        "isLeasing": false,
+        "hasWarranty": false
+      },
+      "createdAt": "2026-01-10T14:55:59.460Z",
+      "updatedAt": "2026-01-10T14:55:59.460Z"
+    },
+    "6962687f5cb5155fff68f692": {
+      "sellerId": "6962687f5cb5155fff68f688",
+      "title": "Opel Corsa 2018",
+      "brandId": "6962687f5cb5155fff68f63e",
+      "modelId": "6962687f5cb5155fff68f65a",
+      "price": 36662,
+      "currency": "EUR",
+      "year": 2018,
+      "fuel": "6962687f5cb5155fff68f67d",
+      "engineDisplacement": 1600,
+      "engineType": 220,
+      "bodyType": "6962687f5cb5155fff68f682",
+      "mileage": 169910,
+      "description": "Uvoz Švajcarska, potvrđena kilometraža. Klima, servo, el. podizači, parking senzori.",
+      "noOwners": 4,
+      "images": [
+        "https://picsum.photos/seed/Opel5/800/600",
+        "https://picsum.photos/seed/Corsa5/800/600"
+      ],
+      "features": {
+        "isCredit": false,
+        "isLeasing": true,
+        "hasWarranty": true
+      },
+      "createdAt": "2026-01-10T14:55:59.460Z",
+      "updatedAt": "2026-01-10T14:55:59.460Z"
+    },
+    "6962687f5cb5155fff68f693": {
+      "sellerId": "6962687f5cb5155fff68f688",
+      "title": "Ford Puma 2018",
+      "brandId": "6962687f5cb5155fff68f63f",
+      "modelId": "6962687f5cb5155fff68f662",
+      "price": 13326,
+      "currency": "EUR",
+      "year": 2018,
+      "fuel": "6962687f5cb5155fff68f67a",
+      "engineDisplacement": 3000,
+      "engineType": 130,
+      "bodyType": "6962687f5cb5155fff68f683",
+      "mileage": 134611,
+      "description": "Top stanje, full oprema. Navigacija, kožna sedišta, panorama krov. Zamena moguća uz doplatu.",
+      "noOwners": 4,
+      "images": [
+        "https://picsum.photos/seed/Ford6/800/600",
+        "https://picsum.photos/seed/Puma6/800/600"
+      ],
+      "features": {
+        "isCredit": true,
+        "isLeasing": false,
+        "hasWarranty": false
+      },
+      "createdAt": "2026-01-10T14:55:59.460Z",
+      "updatedAt": "2026-01-10T14:55:59.460Z"
+    },
+    "6962687f5cb5155fff68f694": {
+      "sellerId": "6962687f5cb5155fff68f688",
+      "title": "Škoda Octavia 2024",
+      "brandId": "6962687f5cb5155fff68f642",
+      "modelId": "6962687f5cb5155fff68f66d",
+      "price": 46245,
+      "currency": "EUR",
+      "year": 2024,
+      "fuel": "6962687f5cb5155fff68f67b",
+      "engineDisplacement": 1600,
+      "engineType": 130,
+      "bodyType": "6962687f5cb5155fff68f686",
+      "mileage": 202991,
+      "description": "Registrovan do kraja godine. Nove gume, novi diskovi. Motor i menjač besprekorno rade.",
+      "noOwners": 2,
+      "images": [
+        "https://picsum.photos/seed/Škoda7/800/600",
+        "https://picsum.photos/seed/Octavia7/800/600"
+      ],
+      "features": {
+        "isCredit": false,
+        "isLeasing": false,
+        "hasWarranty": false
+      },
+      "createdAt": "2026-01-10T14:55:59.460Z",
+      "updatedAt": "2026-01-10T14:55:59.460Z"
+    },
+    "6962687f5cb5155fff68f695": {
+      "sellerId": "6962687f5cb5155fff68f689",
+      "title": "Opel Insignia 2012",
+      "brandId": "6962687f5cb5155fff68f63e",
+      "modelId": "6962687f5cb5155fff68f65b",
+      "price": 12606,
+      "currency": "EUR",
+      "year": 2012,
+      "fuel": "6962687f5cb5155fff68f67a",
+      "engineDisplacement": 3000,
+      "engineType": 250,
+      "bodyType": "6962687f5cb5155fff68f683",
+      "mileage": 190400,
+      "description": "Top stanje, full oprema. Navigacija, kožna sedišta, panorama krov. Zamena moguća uz doplatu.",
+      "noOwners": 4,
+      "images": [
+        "https://picsum.photos/seed/Opel0/800/600",
+        "https://picsum.photos/seed/Insignia0/800/600"
+      ],
+      "features": {
+        "isCredit": true,
+        "isLeasing": false,
+        "hasWarranty": false
+      },
+      "createdAt": "2026-01-10T14:55:59.460Z",
+      "updatedAt": "2026-01-10T14:55:59.460Z"
+    },
+    "6962687f5cb5155fff68f696": {
+      "sellerId": "6962687f5cb5155fff68f689",
+      "title": "Audi A4 2024",
+      "brandId": "6962687f5cb5155fff68f63a",
+      "modelId": "6962687f5cb5155fff68f646",
+      "price": 16994,
+      "currency": "EUR",
+      "year": 2024,
+      "fuel": "6962687f5cb5155fff68f679",
+      "engineDisplacement": 1400,
+      "engineType": 190,
+      "bodyType": "6962687f5cb5155fff68f683",
+      "mileage": 26577,
+      "description": "Očuvan primerak, garažiran. Vlasnik nekadašnji stariji gospodin. Nema tragova udesa.",
+      "noOwners": 1,
+      "images": [
+        "https://picsum.photos/seed/Audi1/800/600",
+        "https://picsum.photos/seed/A41/800/600"
+      ],
+      "features": {
+        "isCredit": true,
+        "isLeasing": false,
+        "hasWarranty": true
+      },
+      "createdAt": "2026-01-10T14:55:59.460Z",
+      "updatedAt": "2026-01-10T14:55:59.460Z"
+    },
+    "6962687f5cb5155fff68f697": {
+      "sellerId": "6962687f5cb5155fff68f689",
+      "title": "Volkswagen Passat 2020",
+      "brandId": "6962687f5cb5155fff68f63d",
+      "modelId": "6962687f5cb5155fff68f655",
+      "price": 16058,
+      "currency": "EUR",
+      "year": 2020,
+      "fuel": "6962687f5cb5155fff68f678",
+      "engineDisplacement": 3000,
+      "engineType": 190,
+      "bodyType": "6962687f5cb5155fff68f681",
+      "mileage": 119941,
+      "description": "Prvi vlasnik u Srbiji. Kupljen nov u salonu. Svi servisi urađeni na vreme.",
+      "noOwners": 2,
+      "images": [
+        "https://picsum.photos/seed/Volkswagen2/800/600",
+        "https://picsum.photos/seed/Passat2/800/600"
+      ],
+      "features": {
+        "isCredit": true,
+        "isLeasing": false,
+        "hasWarranty": true
+      },
+      "createdAt": "2026-01-10T14:55:59.460Z",
+      "updatedAt": "2026-01-10T14:55:59.460Z"
+    },
+    "6962687f5cb5155fff68f698": {
+      "sellerId": "6962687f5cb5155fff68f689",
+      "title": "Audi A6 2022",
+      "brandId": "6962687f5cb5155fff68f63a",
+      "modelId": "6962687f5cb5155fff68f647",
+      "price": 27778,
+      "currency": "EUR",
+      "year": 2022,
+      "fuel": "6962687f5cb5155fff68f67a",
+      "engineDisplacement": 1800,
+      "engineType": 150,
+      "bodyType": "6962687f5cb5155fff68f684",
+      "mileage": 102402,
+      "description": "Top stanje, full oprema. Navigacija, kožna sedišta, panorama krov. Zamena moguća uz doplatu.",
+      "noOwners": 1,
+      "images": [
+        "https://picsum.photos/seed/Audi3/800/600",
+        "https://picsum.photos/seed/A63/800/600"
+      ],
+      "features": {
+        "isCredit": false,
+        "isLeasing": false,
+        "hasWarranty": true
+      },
+      "createdAt": "2026-01-10T14:55:59.460Z",
+      "updatedAt": "2026-01-10T14:55:59.460Z"
+    },
+    "6962687f5cb5155fff68f699": {
+      "sellerId": "6962687f5cb5155fff68f689",
+      "title": "Volkswagen Polo 2013",
+      "brandId": "6962687f5cb5155fff68f63d",
+      "modelId": "6962687f5cb5155fff68f657",
+      "price": 33197,
+      "currency": "EUR",
+      "year": 2013,
+      "fuel": "6962687f5cb5155fff68f67c",
+      "engineDisplacement": 3000,
+      "engineType": 220,
+      "bodyType": "6962687f5cb5155fff68f684",
+      "mileage": 76248,
+      "description": "Prvi vlasnik u Srbiji. Kupljen nov u salonu. Svi servisi urađeni na vreme.",
+      "noOwners": 3,
+      "images": [
+        "https://picsum.photos/seed/Volkswagen4/800/600",
+        "https://picsum.photos/seed/Polo4/800/600"
+      ],
+      "features": {
+        "isCredit": true,
+        "isLeasing": false,
+        "hasWarranty": false
+      },
+      "createdAt": "2026-01-10T14:55:59.460Z",
+      "updatedAt": "2026-01-10T14:55:59.460Z"
+    },
+    "6962687f5cb5155fff68f69a": {
+      "sellerId": "6962687f5cb5155fff68f68a",
+      "title": "Opel Crossland 2013",
+      "brandId": "6962687f5cb5155fff68f63e",
+      "modelId": "6962687f5cb5155fff68f65d",
+      "price": 10378,
+      "currency": "EUR",
+      "year": 2013,
+      "fuel": "6962687f5cb5155fff68f67d",
+      "engineDisplacement": 3000,
+      "engineType": 220,
+      "bodyType": "6962687f5cb5155fff68f683",
+      "mileage": 181282,
+      "description": "Hitna prodaja zbog selidbe. Cena fixna, bez zamene. Moguć dogovor oko isplate.",
+      "noOwners": 2,
+      "images": [
+        "https://picsum.photos/seed/Opel0/800/600",
+        "https://picsum.photos/seed/Crossland0/800/600"
+      ],
+      "features": {
+        "isCredit": false,
+        "isLeasing": false,
+        "hasWarranty": false
+      },
+      "createdAt": "2026-01-10T14:55:59.460Z",
+      "updatedAt": "2026-01-10T14:55:59.460Z"
+    },
+    "6962687f5cb5155fff68f69b": {
+      "sellerId": "6962687f5cb5155fff68f68a",
+      "title": "Ford Puma 2020",
+      "brandId": "6962687f5cb5155fff68f63f",
+      "modelId": "6962687f5cb5155fff68f662",
+      "price": 12528,
+      "currency": "EUR",
+      "year": 2020,
+      "fuel": "6962687f5cb5155fff68f679",
+      "engineDisplacement": 2000,
+      "engineType": 150,
+      "bodyType": "6962687f5cb5155fff68f67f",
+      "mileage": 135135,
+      "description": "Automobil u odličnom stanju, redovno servisiran kod ovlašćenog servisa. Poseduje kompletnu servisnu knjižicu.",
+      "noOwners": 1,
+      "images": [
+        "https://picsum.photos/seed/Ford1/800/600",
+        "https://picsum.photos/seed/Puma1/800/600"
+      ],
+      "features": {
+        "isCredit": true,
+        "isLeasing": false,
+        "hasWarranty": true
+      },
+      "createdAt": "2026-01-10T14:55:59.460Z",
+      "updatedAt": "2026-01-10T14:55:59.460Z"
+    },
+    "6962687f5cb5155fff68f69c": {
+      "sellerId": "6962687f5cb5155fff68f68a",
+      "title": "Volkswagen Arteon 2014",
+      "brandId": "6962687f5cb5155fff68f63d",
+      "modelId": "6962687f5cb5155fff68f658",
+      "price": 42727,
+      "currency": "EUR",
+      "year": 2014,
+      "fuel": "6962687f5cb5155fff68f67d",
+      "engineDisplacement": 1800,
+      "engineType": 300,
+      "bodyType": "6962687f5cb5155fff68f682",
+      "mileage": 58331,
+      "description": "Očuvan primerak, garažiran. Vlasnik nekadašnji stariji gospodin. Nema tragova udesa.",
+      "noOwners": 1,
+      "images": [
+        "https://picsum.photos/seed/Volkswagen2/800/600",
+        "https://picsum.photos/seed/Arteon2/800/600"
+      ],
+      "features": {
+        "isCredit": false,
+        "isLeasing": false,
+        "hasWarranty": false
+      },
+      "createdAt": "2026-01-10T14:55:59.460Z",
+      "updatedAt": "2026-01-10T14:55:59.460Z"
+    },
+    "6962687f5cb5155fff68f69d": {
+      "sellerId": "6962687f5cb5155fff68f68a",
+      "title": "Škoda Superb 2014",
+      "brandId": "6962687f5cb5155fff68f642",
+      "modelId": "6962687f5cb5155fff68f66f",
+      "price": 6154,
+      "currency": "EUR",
+      "year": 2014,
+      "fuel": "6962687f5cb5155fff68f679",
+      "engineDisplacement": 1600,
+      "engineType": 170,
+      "bodyType": "6962687f5cb5155fff68f682",
+      "mileage": 66314,
+      "description": "Uvoz Švajcarska, potvrđena kilometraža. Klima, servo, el. podizači, parking senzori.",
+      "noOwners": 4,
+      "images": [
+        "https://picsum.photos/seed/Škoda3/800/600",
+        "https://picsum.photos/seed/Superb3/800/600"
+      ],
+      "features": {
+        "isCredit": true,
+        "isLeasing": false,
+        "hasWarranty": false
+      },
+      "createdAt": "2026-01-10T14:55:59.460Z",
+      "updatedAt": "2026-01-10T14:55:59.460Z"
+    },
+    "6962687f5cb5155fff68f69e": {
+      "sellerId": "6962687f5cb5155fff68f68a",
+      "title": "Škoda Superb 2013",
+      "brandId": "6962687f5cb5155fff68f642",
+      "modelId": "6962687f5cb5155fff68f66f",
+      "price": 25132,
+      "currency": "EUR",
+      "year": 2013,
+      "fuel": "6962687f5cb5155fff68f678",
+      "engineDisplacement": 3000,
+      "engineType": 150,
+      "bodyType": "6962687f5cb5155fff68f67f",
+      "mileage": 240635,
+      "description": "Očuvan primerak, garažiran. Vlasnik nekadašnji stariji gospodin. Nema tragova udesa.",
+      "noOwners": 3,
+      "images": [
+        "https://picsum.photos/seed/Škoda4/800/600",
+        "https://picsum.photos/seed/Superb4/800/600"
+      ],
+      "features": {
+        "isCredit": false,
+        "isLeasing": false,
+        "hasWarranty": false
+      },
+      "createdAt": "2026-01-10T14:55:59.460Z",
+      "updatedAt": "2026-01-10T14:55:59.460Z"
+    },
+    "6962687f5cb5155fff68f69f": {
+      "sellerId": "6962687f5cb5155fff68f68a",
+      "title": "Audi A3 2016",
+      "brandId": "6962687f5cb5155fff68f63a",
+      "modelId": "6962687f5cb5155fff68f645",
+      "price": 21705,
+      "currency": "EUR",
+      "year": 2016,
+      "fuel": "6962687f5cb5155fff68f678",
+      "engineDisplacement": 1400,
+      "engineType": 90,
+      "bodyType": "6962687f5cb5155fff68f685",
+      "mileage": 103653,
+      "description": "Uvoz Švajcarska, potvrđena kilometraža. Klima, servo, el. podizači, parking senzori.",
+      "noOwners": 2,
+      "images": [
+        "https://picsum.photos/seed/Audi5/800/600",
+        "https://picsum.photos/seed/A35/800/600"
+      ],
+      "features": {
+        "isCredit": false,
+        "isLeasing": false,
+        "hasWarranty": false
+      },
+      "createdAt": "2026-01-10T14:55:59.460Z",
+      "updatedAt": "2026-01-10T14:55:59.460Z"
+    },
+    "6962687f5cb5155fff68f6a0": {
+      "sellerId": "6962687f5cb5155fff68f68a",
+      "title": "Renault Clio 2014",
+      "brandId": "6962687f5cb5155fff68f640",
+      "modelId": "6962687f5cb5155fff68f663",
+      "price": 30259,
+      "currency": "EUR",
+      "year": 2014,
+      "fuel": "6962687f5cb5155fff68f67a",
+      "engineDisplacement": 1800,
+      "engineType": 300,
+      "bodyType": "6962687f5cb5155fff68f686",
+      "mileage": 145607,
+      "description": "Top stanje, full oprema. Navigacija, kožna sedišta, panorama krov. Zamena moguća uz doplatu.",
+      "noOwners": 3,
+      "images": [
+        "https://picsum.photos/seed/Renault6/800/600",
+        "https://picsum.photos/seed/Clio6/800/600"
+      ],
+      "features": {
+        "isCredit": true,
+        "isLeasing": false,
+        "hasWarranty": false
+      },
+      "createdAt": "2026-01-10T14:55:59.460Z",
+      "updatedAt": "2026-01-10T14:55:59.460Z"
+    },
+    "6962687f5cb5155fff68f6a1": {
+      "sellerId": "6962687f5cb5155fff68f68b",
+      "title": "Renault Captur 2018",
+      "brandId": "6962687f5cb5155fff68f640",
+      "modelId": "6962687f5cb5155fff68f665",
+      "price": 12484,
+      "currency": "EUR",
+      "year": 2018,
+      "fuel": "6962687f5cb5155fff68f67b",
+      "engineDisplacement": 1600,
+      "engineType": 300,
+      "bodyType": "6962687f5cb5155fff68f67f",
+      "mileage": 117429,
+      "description": "Uvoz Švajcarska, potvrđena kilometraža. Klima, servo, el. podizači, parking senzori.",
+      "noOwners": 1,
+      "images": [
+        "https://picsum.photos/seed/Renault0/800/600",
+        "https://picsum.photos/seed/Captur0/800/600"
+      ],
+      "features": {
+        "isCredit": true,
+        "isLeasing": true,
+        "hasWarranty": false
+      },
+      "createdAt": "2026-01-10T14:55:59.460Z",
+      "updatedAt": "2026-01-10T14:55:59.460Z"
+    },
+    "6962687f5cb5155fff68f6a2": {
+      "sellerId": "6962687f5cb5155fff68f68b",
+      "title": "Volkswagen Polo 2010",
+      "brandId": "6962687f5cb5155fff68f63d",
+      "modelId": "6962687f5cb5155fff68f657",
+      "price": 35000,
+      "currency": "EUR",
+      "year": 2010,
+      "fuel": "6962687f5cb5155fff68f67a",
+      "engineDisplacement": 1800,
+      "engineType": 130,
+      "bodyType": "6962687f5cb5155fff68f685",
+      "mileage": 117342,
+      "description": "Uvoz Švajcarska, potvrđena kilometraža. Klima, servo, el. podizači, parking senzori.",
+      "noOwners": 3,
+      "images": [
+        "https://picsum.photos/seed/Volkswagen1/800/600",
+        "https://picsum.photos/seed/Polo1/800/600"
+      ],
+      "features": {
+        "isCredit": false,
+        "isLeasing": false,
+        "hasWarranty": false
+      },
+      "createdAt": "2026-01-10T14:55:59.460Z",
+      "updatedAt": "2026-01-10T14:55:59.460Z"
+    },
+    "6962687f5cb5155fff68f6a3": {
+      "sellerId": "6962687f5cb5155fff68f68b",
+      "title": "Audi Q7 2017",
+      "brandId": "6962687f5cb5155fff68f63a",
+      "modelId": "6962687f5cb5155fff68f649",
+      "price": 46263,
+      "currency": "EUR",
+      "year": 2017,
+      "fuel": "6962687f5cb5155fff68f679",
+      "engineDisplacement": 1600,
+      "engineType": 250,
+      "bodyType": "6962687f5cb5155fff68f682",
+      "mileage": 39402,
+      "description": "Očuvan primerak, garažiran. Vlasnik nekadašnji stariji gospodin. Nema tragova udesa.",
+      "noOwners": 2,
+      "images": [
+        "https://picsum.photos/seed/Audi2/800/600",
+        "https://picsum.photos/seed/Q72/800/600"
+      ],
+      "features": {
+        "isCredit": true,
+        "isLeasing": true,
+        "hasWarranty": false
+      },
+      "createdAt": "2026-01-10T14:55:59.460Z",
+      "updatedAt": "2026-01-10T14:55:59.460Z"
+    },
+    "6962687f5cb5155fff68f6a4": {
+      "sellerId": "6962687f5cb5155fff68f68b",
+      "title": "Škoda Octavia 2013",
+      "brandId": "6962687f5cb5155fff68f642",
+      "modelId": "6962687f5cb5155fff68f66d",
+      "price": 24525,
+      "currency": "EUR",
+      "year": 2013,
+      "fuel": "6962687f5cb5155fff68f67b",
+      "engineDisplacement": 2000,
+      "engineType": 300,
+      "bodyType": "6962687f5cb5155fff68f685",
+      "mileage": 34673,
+      "description": "Tek uvežen iz Nemačke, sa kompletnom dokumentacijom. Bez ulaganja, odmah spreman za registraciju.",
+      "noOwners": 1,
+      "images": [
+        "https://picsum.photos/seed/Škoda3/800/600",
+        "https://picsum.photos/seed/Octavia3/800/600"
+      ],
+      "features": {
+        "isCredit": true,
+        "isLeasing": true,
+        "hasWarranty": true
+      },
+      "createdAt": "2026-01-10T14:55:59.460Z",
+      "updatedAt": "2026-01-10T14:55:59.460Z"
+    },
+    "6962687f5cb5155fff68f6a5": {
+      "sellerId": "6962687f5cb5155fff68f68b",
+      "title": "Ford Focus 2023",
+      "brandId": "6962687f5cb5155fff68f63f",
+      "modelId": "6962687f5cb5155fff68f65e",
+      "price": 4328,
+      "currency": "EUR",
+      "year": 2023,
+      "fuel": "6962687f5cb5155fff68f67b",
+      "engineDisplacement": 2500,
+      "engineType": 170,
+      "bodyType": "6962687f5cb5155fff68f686",
+      "mileage": 60680,
+      "description": "Očuvan primerak, garažiran. Vlasnik nekadašnji stariji gospodin. Nema tragova udesa.",
+      "noOwners": 3,
+      "images": [
+        "https://picsum.photos/seed/Ford4/800/600",
+        "https://picsum.photos/seed/Focus4/800/600"
+      ],
+      "features": {
+        "isCredit": true,
+        "isLeasing": false,
+        "hasWarranty": false
+      },
+      "createdAt": "2026-01-10T14:55:59.460Z",
+      "updatedAt": "2026-01-10T14:55:59.460Z"
+    },
+    "6962687f5cb5155fff68f6a6": {
+      "sellerId": "6962687f5cb5155fff68f68b",
+      "title": "Škoda Kodiaq 2015",
+      "brandId": "6962687f5cb5155fff68f642",
+      "modelId": "6962687f5cb5155fff68f670",
+      "price": 29294,
+      "currency": "EUR",
+      "year": 2015,
+      "fuel": "6962687f5cb5155fff68f67a",
+      "engineDisplacement": 3000,
+      "engineType": 170,
+      "bodyType": "6962687f5cb5155fff68f681",
+      "mileage": 193334,
+      "description": "Uvoz Švajcarska, potvrđena kilometraža. Klima, servo, el. podizači, parking senzori.",
+      "noOwners": 1,
+      "images": [
+        "https://picsum.photos/seed/Škoda5/800/600",
+        "https://picsum.photos/seed/Kodiaq5/800/600"
+      ],
+      "features": {
+        "isCredit": false,
+        "isLeasing": false,
+        "hasWarranty": true
+      },
+      "createdAt": "2026-01-10T14:55:59.460Z",
+      "updatedAt": "2026-01-10T14:55:59.460Z"
+    },
+    "6962687f5cb5155fff68f6a7": {
+      "sellerId": "6962687f5cb5155fff68f68b",
+      "title": "Volkswagen Arteon 2020",
+      "brandId": "6962687f5cb5155fff68f63d",
+      "modelId": "6962687f5cb5155fff68f658",
+      "price": 39463,
+      "currency": "EUR",
+      "year": 2020,
+      "fuel": "6962687f5cb5155fff68f67d",
+      "engineDisplacement": 2000,
+      "engineType": 300,
+      "bodyType": "6962687f5cb5155fff68f681",
+      "mileage": 60983,
+      "description": "Top stanje, full oprema. Navigacija, kožna sedišta, panorama krov. Zamena moguća uz doplatu.",
+      "noOwners": 4,
+      "images": [
+        "https://picsum.photos/seed/Volkswagen6/800/600",
+        "https://picsum.photos/seed/Arteon6/800/600"
+      ],
+      "features": {
+        "isCredit": false,
+        "isLeasing": false,
+        "hasWarranty": true
+      },
+      "createdAt": "2026-01-10T14:55:59.460Z",
+      "updatedAt": "2026-01-10T14:55:59.460Z"
+    }
+  }
+}

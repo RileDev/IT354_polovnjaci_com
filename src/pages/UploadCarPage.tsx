@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+﻿import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -8,18 +8,18 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
-import { useEffect, useRef, useState } from "react";
-import {api, firebaseMapRecords} from "../services/firebase_api.ts";
-import type {IBodyType, IBrand, IFuel, IModel} from "../types";
+import { useEffect, useRef, useState, type FormEvent } from "react";
+import { api, firebaseMapRecords } from "../services/firebase_api.ts";
+import type { IBodyType, IBrand, IFuel, IModel } from "../types";
 import Dropzone from "react-dropzone";
-import {useAuthStore} from "../stores/authStore.ts";
+import { useAuthStore } from "../stores/authStore.ts";
 
 const UploadCarPage = () => {
-  const {token} = useAuthStore()
-  const [brands, setBrands] = useState<IBrand[]>([])
-  const [models, setModels] = useState<IModel[]>([])
-  const [fuels, setFuels] = useState<IFuel[]>([])
-  const [bodyTypes, setBodyTypes] = useState<IBodyType[]>([])
+  const { token, user } = useAuthStore();
+  const [brands, setBrands] = useState<IBrand[]>([]);
+  const [models, setModels] = useState<IModel[]>([]);
+  const [fuels, setFuels] = useState<IFuel[]>([]);
+  const [bodyTypes, setBodyTypes] = useState<IBodyType[]>([]);
   const [form, setForm] = useState({
     brandId: "",
     modelId: "",
@@ -39,12 +39,13 @@ const UploadCarPage = () => {
       isLeasing: false,
       hasWarranty: false,
     },
-  })
-  const [imageFiles, setImageFiles] = useState<File[]>([])
-  const [imagePreviews, setImagePreviews] = useState<string[]>([])
-  const dragIndexRef = useRef<number | null>(null)
+  });
+  const [imageFiles, setImageFiles] = useState<File[]>([]);
+  const [imagePreviews, setImagePreviews] = useState<string[]>([]);
+  const [submitting, setSubmitting] = useState(false);
+  const dragIndexRef = useRef<number | null>(null);
 
-  useEffect(()=>{
+  useEffect(() => {
     const loadFilterData = async () => {
       try {
         const [brandsData, modelsData, fuelsData, bodyTypesData] = await Promise.all([
@@ -61,10 +62,10 @@ const UploadCarPage = () => {
       } catch {
         // No-op: keep empty lists if load fails.
       }
-    }
+    };
 
     void loadFilterData();
-  }, [])
+  }, []);
 
   useEffect(() => {
     const urls = imageFiles.map((file) => URL.createObjectURL(file));
@@ -74,6 +75,36 @@ const UploadCarPage = () => {
       urls.forEach((url) => URL.revokeObjectURL(url));
     };
   }, [imageFiles]);
+
+  const readFileAsDataUrl = (file: File) =>
+    new Promise<string>((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(String(reader.result));
+      reader.onerror = () => reject(new Error("Neuspesno citanje fajla."));
+      reader.readAsDataURL(file);
+    });
+
+  const uploadImages = async () => {
+    const files = await Promise.all(
+      imageFiles.map(async (file) => ({
+        name: file.name,
+        dataUrl: await readFileAsDataUrl(file),
+      })),
+    );
+
+    const response = await fetch("/__upload", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ files }),
+    });
+
+    if (!response.ok) {
+      throw new Error("Neuspesno cuvanje slika.");
+    }
+
+    const result = (await response.json()) as { urls: string[] };
+    return result.urls ?? [];
+  };
 
   const filteredModels = form.brandId
     ? models.filter((model) => model.brandId === form.brandId)
@@ -94,23 +125,97 @@ const UploadCarPage = () => {
     });
   };
 
-  const handleFormSubmit = async(e) => {
-    e.preventDefault()
-    if(Object.values(form).some(i => i.length == 0) || imageFiles.length === 0) {
-      alert("Sva polja moraju biti uneta uključujući i slike!!!")
-      return
+  const handleFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (!user) {
+      alert("Morate biti prijavljeni da biste postavili oglas.");
+      return;
     }
 
-    // await api.post("cars", {
-    //   ...form,
-    //   images: imageFiles.map(({path}) => path)
-    // }, token)
+    const requiredFields = [
+      form.brandId,
+      form.modelId,
+      form.title,
+      form.year,
+      form.fuel,
+      form.bodyType,
+      form.mileage,
+      form.enginePower,
+      form.engineDisplacement,
+      form.owners,
+      form.price,
+      form.description,
+    ];
 
-    console.log({
-      ...form,
-      images: imageFiles.map(({path}) => path)
-    })
-  }
+    if (requiredFields.some((value) => value.trim().length === 0) || imageFiles.length === 0) {
+      alert("Sva polja moraju biti uneta uključujući i slike.");
+      return;
+    }
+
+    setSubmitting(true);
+    try {
+      const imageUrls = await uploadImages();
+      if (imageUrls.length === 0) {
+        throw new Error("Nema sacuvanih slika.");
+      }
+
+      const localhostUrls = imageUrls.map(
+        (url) => new URL(url, window.location.origin).toString(),
+      );
+
+      await api.post(
+        "cars",
+        {
+          sellerId: user.uid,
+          title: form.title,
+          brandId: form.brandId,
+          modelId: form.modelId,
+          price: Number(form.price),
+          currency: form.currency,
+          year: Number(form.year),
+          fuel: form.fuel,
+          engineDisplacement: Number(form.engineDisplacement),
+          engineType: Number(form.enginePower),
+          bodyType: form.bodyType,
+          mileage: Number(form.mileage),
+          description: form.description,
+          noOwners: Number(form.owners),
+          images: localhostUrls,
+          features: form.features,
+          createdAt: new Date().toISOString(),
+        },
+        token ?? undefined,
+      );
+
+      setForm({
+        brandId: "",
+        modelId: "",
+        title: "",
+        year: "",
+        fuel: "",
+        bodyType: "",
+        mileage: "",
+        enginePower: "",
+        engineDisplacement: "",
+        owners: "",
+        price: "",
+        currency: "EUR",
+        description: "",
+        features: {
+          isCredit: false,
+          isLeasing: false,
+          hasWarranty: false,
+        },
+      });
+      setImageFiles([]);
+      alert("Oglas je uspesno sacuvan.");
+    } catch (err) {
+      alert(err instanceof Error ? err.message : "Neuspesno cuvanje oglasa.");
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -426,8 +531,14 @@ const UploadCarPage = () => {
           </Dropzone>
         </div>
 
-        <Button variant="secondary" type="submit" className="w-full cursor-pointer" size="lg">
-          Objavi oglas
+        <Button
+          variant="secondary"
+          type="submit"
+          className="w-full cursor-pointer"
+          size="lg"
+          disabled={submitting}
+        >
+          {submitting ? "Cuvanje..." : "Objavi oglas"}
         </Button>
       </form>
     </div>
@@ -435,3 +546,5 @@ const UploadCarPage = () => {
 };
 
 export default UploadCarPage;
+
+

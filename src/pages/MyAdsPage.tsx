@@ -46,6 +46,20 @@ const MyAdsPage = () => {
 
   const hasCars = useMemo(() => cars.length > 0, [cars.length]);
 
+  const handleCarDelete = async (carId: string) => {
+    if (!carId || !token) return;
+
+    const previous = cars;
+    setCars((prev) => prev.filter((car) => car._id !== carId));
+
+    try {
+      await api.delete(`cars/${carId}`, token ?? undefined);
+    } catch (err) {
+      setCars(previous);
+      setError(err instanceof Error ? err.message : "Neuspesno brisanje oglasa.");
+    }
+  };
+
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
@@ -71,29 +85,31 @@ const MyAdsPage = () => {
               key={car._id}
               className="flex flex-col gap-4 rounded-lg border border-zinc-700 bg-zinc-800 p-4 shadow-lg sm:flex-row"
             >
-              {/* Image */}
-              {car.images?.length ? (
-                <img
-                  src={car.images[0]}
-                  alt={car.title}
-                  className="h-24 w-full shrink-0 rounded-md object-cover sm:w-32"
-                />
-              ) : (
-                <div className="h-24 w-full shrink-0 rounded-md bg-zinc-700/50 sm:w-32" />
-              )}
+              <Link to={`/oglas/${car._id}`} className="flex flex-1 flex-col gap-4 sm:flex-row">
+                {/* Image */}
+                {car.images?.length ? (
+                  <img
+                    src={car.images[0]}
+                    alt={car.title}
+                    className="h-24 w-full shrink-0 rounded-md object-cover sm:w-32"
+                  />
+                ) : (
+                  <div className="h-24 w-full shrink-0 rounded-md bg-zinc-700/50 sm:w-32" />
+                )}
 
-              {/* Details */}
-              <div className="flex flex-1 flex-col justify-between gap-3">
-                <div>
-                  <h3 className="font-semibold">{car.title}</h3>
-                  <p className="text-sm text-zinc-400">
-                    Godina: {car.year} | Kilometraza: {car.mileage} km
+                {/* Details */}
+                <div className="flex flex-1 flex-col justify-between gap-3">
+                  <div>
+                    <h3 className="font-semibold">{car.title}</h3>
+                    <p className="text-sm text-zinc-400">
+                      Godina: {car.year} | Kilometraza: {car.mileage} km
+                    </p>
+                  </div>
+                  <p className="text-lg font-bold text-blue-400">
+                    {car.currency} {car.price.toLocaleString("sr-RS")}
                   </p>
                 </div>
-                <p className="text-lg font-bold text-blue-400">
-                  {car.currency} {car.price.toLocaleString("sr-RS")}
-                </p>
-              </div>
+              </Link>
 
               {/* Actions */}
               <div className="flex gap-2 sm:flex-col">
@@ -101,6 +117,7 @@ const MyAdsPage = () => {
                   variant="outline"
                   size="icon"
                   className="border-zinc-600 bg-zinc-900 text-red-400 hover:bg-zinc-800 hover:text-red-400 cursor-pointer"
+                  onClick={() => handleCarDelete(car._id)}
                 >
                   <Trash2 className="h-4 w-4" />
                 </Button>

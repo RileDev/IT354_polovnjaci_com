@@ -13,9 +13,11 @@ import { api, firebaseMapRecords } from "../services/firebase_api.ts";
 import type { IBodyType, IBrand, IFuel, IModel } from "../types";
 import Dropzone from "react-dropzone";
 import { useAuthStore } from "../stores/authStore.ts";
+import {useNavigate} from "react-router-dom";
 
 const UploadCarPage = () => {
   const { token, user } = useAuthStore();
+  const navigate = useNavigate()
   const [brands, setBrands] = useState<IBrand[]>([]);
   const [models, setModels] = useState<IModel[]>([]);
   const [fuels, setFuels] = useState<IFuel[]>([]);
@@ -210,6 +212,7 @@ const UploadCarPage = () => {
       });
       setImageFiles([]);
       alert("Oglas je uspesno sacuvan.");
+      navigate("/moji-oglasi")
     } catch (err) {
       alert(err instanceof Error ? err.message : "Neuspesno cuvanje oglasa.");
     } finally {

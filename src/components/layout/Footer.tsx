@@ -14,7 +14,7 @@ const Footer = () => {
                             className="flex items-center gap-2 text-lg font-bold text-blue-500"
                         >
                             <Car className="h-5 w-5" />
-                            <span>Polovnjaci.rs</span>
+                            <span>Polovnjaci.com</span>
                         </Link>
                         <p className="mt-2 text-sm text-zinc-400">
                             Vaše pouzdano tržište za polovne automobile.
@@ -45,14 +45,14 @@ const Footer = () => {
                     <div>
                         <h3 className="font-semibold">Kontakt</h3>
                         <ul className="mt-2 space-y-1 text-sm text-zinc-400">
-                            <li><a href="mailto:info@polovnjaci.rs" className="hover:text-zinc-100 transition-colors">Email: info@polovnjaci.rs</a></li>
+                            <li><a href="mailto:info@polovnjaci.com" className="hover:text-zinc-100 transition-colors">Email: info@polovnjaci.com</a></li>
                             <li><a href="tel:+381 11 123 4567" className="hover:text-zinc-100 transition-colors">Telefon: +381 11 123 4567</a></li>
                         </ul>
                     </div>
                 </div>
 
                 <div className="mt-8 border-t border-zinc-700/40 pt-4 text-center text-sm text-zinc-400">
-                    <p>&copy; {currentYear} Polovnjaci.rs. Sva prava zadržana.</p>
+                    <p>&copy; {currentYear} Polovnjaci.com. Sva prava zadržana.</p>
                     <p>Created by: Luka Ristić 6001</p>
                 </div>
             </div>

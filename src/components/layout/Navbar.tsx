@@ -9,7 +9,7 @@ import {
 } from "../ui/dropdown-menu";
 import { Button } from "../ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { Car, User, KeyRound, FileText, LogOut } from "lucide-react";
+import { Car, User, KeyRound, FileText, LogOut, Menu } from "lucide-react";
 import { useAuthStore } from "../../stores/authStore";
 import { auth } from "../../services/firebase";
 
@@ -30,10 +30,10 @@ const Navbar = () => {
           className="flex items-center gap-2 text-xl font-bold text-blue-500 transition-colors hover:text-blue-400"
         >
           <Car className="h-6 w-6" />
-          <span>Polovnjaci.rs</span>
+          <span>Polovnjaci.com</span>
         </Link>
 
-        <nav>
+        <nav className="flex items-center">
           {user ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -85,13 +85,42 @@ const Navbar = () => {
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
-            <div className="flex gap-2">
-              <Button variant="ghost" asChild>
-                <Link to="/prijava">Prijava</Link>
-              </Button>
-              <Button variant="secondary" asChild>
-                <Link to="/registracija">Registracija</Link>
-              </Button>
+            <div className="flex items-center gap-2">
+              <div className="hidden sm:flex sm:gap-2">
+                <Button variant="ghost" asChild>
+                  <Link to="/prijava">Prijava</Link>
+                </Button>
+                <Button variant="secondary" asChild>
+                  <Link to="/registracija">Registracija</Link>
+                </Button>
+              </div>
+
+              <div className="sm:hidden">
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="hover:bg-zinc-800"
+                      aria-label="Otvori meni"
+                    >
+                      <Menu className="h-5 w-5" />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end" className="w-48">
+                    <DropdownMenuItem asChild>
+                      <Link to="/prijava" className="flex items-center gap-2 cursor-pointer">
+                        <span>Prijava</span>
+                      </Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem asChild>
+                      <Link to="/registracija" className="flex items-center gap-2 cursor-pointer">
+                        <span>Registracija</span>
+                      </Link>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </div>
             </div>
           )}
         </nav>

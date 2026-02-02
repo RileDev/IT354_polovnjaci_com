@@ -20,7 +20,7 @@ const Navbar = () => {
     await signOut(auth);
   };
 
-  const displayName = user?.displayName || user?.email || "Korisnik";
+  const displayName = user?.username || user?.email || "Korisnik";
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-zinc-700/40 bg-zinc-900/95 backdrop-blur">
@@ -41,7 +41,7 @@ const Navbar = () => {
                   className="flex items-center gap-2 hover:bg-zinc-800 cursor-pointer"
                 >
                   <Avatar className="h-8 w-8">
-                    <AvatarImage src={user.photoURL ?? ""} alt={displayName} />
+                    <AvatarImage src={user.avatar ?? ""} alt={displayName} />
                     <AvatarFallback className="bg-blue-500 text-white">
                       {displayName.charAt(0).toUpperCase()}
                     </AvatarFallback>

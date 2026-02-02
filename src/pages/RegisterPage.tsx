@@ -1,6 +1,11 @@
 import {useMemo, useState, type FormEvent, useEffect} from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+  updateProfile,
+} from "firebase/auth";
 import { FirebaseError } from "firebase/app";
 import { Button } from "../components/ui/button.tsx";
 import { Input } from "../components/ui/input";
@@ -56,6 +61,10 @@ const RegisterPage = () => {
           return "Lozinka je prekratka. Koristite najmanje 6 karaktera.";
         case "auth/operation-not-allowed":
           return "Email/lozinka autentikacija nije omogucena.";
+        case "auth/popup-closed-by-user":
+          return "Popup je zatvoren pre zavrsetka prijave.";
+        case "auth/account-exists-with-different-credential":
+          return "Nalog vec postoji sa drugim nacinom prijave.";
         case "auth/network-request-failed":
           return "Problem sa mrezom. Pokusajte ponovo.";
         default:
@@ -91,6 +100,7 @@ const RegisterPage = () => {
       }
 
       const payload = {
+        uid: credential.user.uid,
         name: name || username,
         username,
         email,
@@ -103,6 +113,53 @@ const RegisterPage = () => {
 
       const token = await credential.user.getIdToken();
       await api.put(`users/${credential.user.uid}`, payload, token);
+      navigate("/");
+    } catch (err) {
+      setError(getAuthErrorMessage(err));
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const ensureUserProfile = async (uid: string, token: string, profile: {
+    name: string;
+    username: string;
+    email: string;
+    avatar?: string;
+  }) => {
+    const existing = await api.get<Record<string, unknown> | null>(`users/${uid}`, token);
+    if (!existing) {
+      await api.put(
+        `users/${uid}`,
+        {
+          uid,
+          ...profile,
+          role: "user",
+          createdAt: new Date().toISOString(),
+        },
+        token,
+      );
+    }
+  };
+
+  const handleGoogleSignIn = async () => {
+    setLoading(true);
+    setError("");
+
+    try {
+      const provider = new GoogleAuthProvider();
+      const result = await signInWithPopup(auth, provider);
+      const token = await result.user.getIdToken();
+      const emailValue = result.user.email ?? "";
+      const fallbackUsername = emailValue ? emailValue.split("@")[0] : "korisnik";
+
+      await ensureUserProfile(result.user.uid, token, {
+        name: result.user.displayName ?? "Korisnik",
+        username: result.user.displayName ?? fallbackUsername,
+        email: emailValue,
+        avatar: result.user.photoURL ?? "",
+      });
+
       navigate("/");
     } catch (err) {
       setError(getAuthErrorMessage(err));
@@ -236,7 +293,13 @@ const RegisterPage = () => {
           <div className="h-px flex-1 bg-zinc-700" />
         </div>
 
-        <Button variant="secondary" className="w-full cursor-pointer" disabled={loading}>
+        <Button
+          variant="secondary"
+          className="w-full cursor-pointer"
+          disabled={loading}
+          onClick={handleGoogleSignIn}
+          type="button"
+        >
           <svg className="mr-2 h-4 w-4" viewBox="0 0 24 24">
             <path
               fill="currentColor"

@@ -1,14 +1,14 @@
 import { create } from "zustand";
-import type { IAuthUser } from "../types";
+import type { IUser } from "../types";
 
 type IAuthState = {
-  user: IAuthUser | null;
+  user: IUser | null;
   token: string | null;
   isLoading: boolean;
 };
 
 type IAuthActions = {
-  setUser: (user: IAuthUser | null) => void;
+  setUser: (user: IUser | null) => void;
   setToken: (token: string | null) => void;
   setLoading: (isLoading: boolean) => void;
   logout: () => void;

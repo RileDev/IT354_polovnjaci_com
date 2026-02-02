@@ -1,22 +1,15 @@
 // TypeScript interfaces for the Polovnjaci.rs frontend
 
-export type IAuthUser = {
-  uid: string;
-  email: string | null;
-  displayName: string | null;
-  photoURL: string | null;
-};
-
 export interface IUser {
-  _id: string;
-  name: string;
-  username: string;
-  email: string;
+  uid: string;
+  name?: string;
+  username?: string;
+  email?: string;
   phoneNum?: string;
   city?: string;
   avatar?: string;
-  role: "user" | "admin";
-  createdAt: string;
+  role?: "user" | "admin";
+  createdAt?: string;
 }
 
 export interface ICarFeatures {
@@ -68,7 +61,7 @@ export interface IBodyType {
 }
 
 export interface IAuthState {
-  user: IAuthUser | null;
+  user: IUser | null;
   token: string | null;
   isLoading: boolean;
 }

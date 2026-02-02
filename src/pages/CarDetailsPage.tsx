@@ -10,7 +10,7 @@ import {
   Phone,
 } from "lucide-react";
 import { Button } from "../components/ui/button";
-import { api, firebaseMapRecords } from "../services/firebase_api.ts";
+import { api, firebaseMapRecords, firebaseMapRecordsWithId } from "../services/firebase_api.ts";
 import { useFiltersStore } from "../stores/filtersStore";
 import type {
   IBodyType,
@@ -69,8 +69,8 @@ const CarDetailsPage = () => {
         }
 
         const usersData = await api.get<Record<string, IUser> | null>("users");
-        const users = firebaseMapRecords(usersData);
-        const foundSeller = users.find((user) => user._id === found.sellerId) ?? null;
+        const users = firebaseMapRecordsWithId(usersData, "uid");
+        const foundSeller = users.find((user) => user.uid === found.sellerId) ?? null;
 
         if (!cancelled) setSeller(foundSeller);
       } catch (err) {

@@ -8,6 +8,15 @@ export const firebaseMapRecords = <T extends { _id?: string }>(
             _id: item._id ?? id,
         })) : [];
 
+export const firebaseMapRecordsWithId = <T extends Record<string, unknown>>(
+    data: Record<string, T> | null,
+    idKey: string,
+) =>
+    data ? Object.entries(data).map(([id, item]) => ({
+            ...item,
+            [idKey]: (item as Record<string, unknown>)[idKey] ?? id,
+        })) : [];
+
 const buildFirebaseUrl = (path: string, authToken?: string) => {
     const base = firebaseUrl.endsWith("/") ? firebaseUrl : `${firebaseUrl}/`;
     const url = new URL(`${base}${path}.json`);

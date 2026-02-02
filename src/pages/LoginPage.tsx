@@ -1,9 +1,11 @@
 import {useState, type FormEvent, useEffect} from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { FirebaseError } from "firebase/app";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { auth } from "../services/firebase";
+import { api } from "../services/firebase_api";
 import {useAuthStore} from "../stores/authStore.ts";
 
 const LoginPage = () => {
@@ -20,6 +22,54 @@ const LoginPage = () => {
       navigate("/")
   }, [navigate, user])
 
+  const getAuthErrorMessage = (err: unknown) => {
+    if (err instanceof FirebaseError) {
+      switch (err.code) {
+        case "auth/invalid-credential":
+          return "Pogresan email ili lozinka.";
+        case "auth/user-not-found":
+          return "Nalog nije pronadjen.";
+        case "auth/wrong-password":
+          return "Pogresna lozinka.";
+        case "auth/popup-closed-by-user":
+          return "Popup je zatvoren pre zavrsetka prijave.";
+        case "auth/account-exists-with-different-credential":
+          return "Nalog vec postoji sa drugim nacinom prijave.";
+        case "auth/network-request-failed":
+          return "Problem sa mrezom. Pokusajte ponovo.";
+        default:
+          return "Doslo je do greske prilikom prijave.";
+      }
+    }
+
+    if (err instanceof Error) {
+      return err.message;
+    }
+
+    return "Doslo je do greske prilikom prijave.";
+  };
+
+  const ensureUserProfile = async (uid: string, token: string, profile: {
+    name: string;
+    username: string;
+    email: string;
+    avatar?: string;
+  }) => {
+    const existing = await api.get<Record<string, unknown> | null>(`users/${uid}`, token);
+    if (!existing) {
+      await api.put(
+        `users/${uid}`,
+        {
+          uid,
+          ...profile,
+          role: "user",
+          createdAt: new Date().toISOString(),
+        },
+        token,
+      );
+    }
+  };
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
@@ -29,7 +79,33 @@ const LoginPage = () => {
       await signInWithEmailAndPassword(auth, email, password);
       navigate("/");
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Doslo je do greske");
+      setError(getAuthErrorMessage(err));
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleGoogleSignIn = async () => {
+    setLoading(true);
+    setError("");
+
+    try {
+      const provider = new GoogleAuthProvider();
+      const result = await signInWithPopup(auth, provider);
+      const token = await result.user.getIdToken();
+      const emailValue = result.user.email ?? "";
+      const fallbackUsername = emailValue ? emailValue.split("@")[0] : "korisnik";
+
+      await ensureUserProfile(result.user.uid, token, {
+        name: result.user.displayName ?? "Korisnik",
+        username: result.user.displayName ?? fallbackUsername,
+        email: emailValue,
+        avatar: result.user.photoURL ?? "",
+      });
+
+      navigate("/");
+    } catch (err) {
+      setError(getAuthErrorMessage(err));
     } finally {
       setLoading(false);
     }
@@ -86,7 +162,13 @@ const LoginPage = () => {
           <div className="h-px flex-1 bg-zinc-700" />
         </div>
 
-        <Button variant="secondary" className="w-full cursor-pointer" disabled={loading}>
+        <Button
+          variant="secondary"
+          className="w-full cursor-pointer"
+          disabled={loading}
+          onClick={handleGoogleSignIn}
+          type="button"
+        >
           <svg className="mr-2 h-4 w-4" viewBox="0 0 24 24">
             <path
               fill="currentColor"

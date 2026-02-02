@@ -9,15 +9,17 @@ import LoginPage from "./pages/LoginPage.tsx";
 import RegisterPage from "./pages/RegisterPage.tsx";
 import { useAuthStore } from "./stores/authStore.ts";
 import { auth } from "./services/firebase.ts";
-import type { IAuthUser } from "./types";
+import type { IUser } from "./types";
+import UserProfilePage from "./pages/UserProfilePage.tsx";
 
-const mapAuthUser = (user: FirebaseUser | null): IAuthUser | null =>
+const mapAuthUser = (user: FirebaseUser | null): IUser | null =>
   user
     ? {
         uid: user.uid,
-        email: user.email,
-        displayName: user.displayName,
-        photoURL: user.photoURL,
+        email: user.email ?? undefined,
+        name: user.displayName ?? undefined,
+        username: user.email ? user.email.split("@")[0] : undefined,
+        avatar: user.photoURL ?? undefined,
       }
     : null;
 
@@ -52,6 +54,7 @@ const App = () => {
           <Route path="oglas/:id" element={<CarDetailsPage />} />
           <Route path="prijava" element={<LoginPage />} />
           <Route path="registracija" element={<RegisterPage />} />
+          <Route path="profil" element={<UserProfilePage />} />
         </Route>
       </Routes>
     </BrowserRouter>

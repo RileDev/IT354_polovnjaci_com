@@ -1,38 +1,17 @@
-const firebaseUrl = import.meta.env.VITE_FIREBASE_URL as string
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth"
 
-export const firebaseMapRecords = <T extends { _id?: string }>(
-    data: Record<string, T> | null
-) =>
-    data ? Object.entries(data).map(([id, item]) => ({
-            ...item,
-            _id: item._id ?? id,
-        })) : [];
+const firebaseConfig = {
+    apiKey: import.meta.env.VITE_API_KEY,
+    authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+    databaseURL: import.meta.env.VITE_FIREBASE_URL,
+    projectId: import.meta.env.VITE_PROJECT_ID,
+    storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+    messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
+    appId: import.meta.env.VITE_APP_ID
+};
 
-export async function request<T>(path: string, options: RequestInit = {}) : Promise<T>{
-    const headers = {
-        "Content-Type" : "application/json",
-        ...options.headers
-    }
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app)
 
-    const response = await fetch(`${firebaseUrl}${path}.json`, {
-        ...options,
-        headers
-    })
-
-    const text = await response.text()
-    const data = text ? JSON.parse(text) : null
-
-    if (!response.ok)
-        throw new Error(data?.error || data?.message || `Request failed (${response.status})`)
-
-    return data;
-}
-
-export const api = {
-    get: <T>(path: string) => request<T>(path, { method: "GET" }),
-    post: <T>(path: string, body: any) =>
-        request<T>(path, { method: "POST", body: JSON.stringify(body) }),
-    put: <T>(path: string, body: any) =>
-        request<T>(path, { method: "PUT", body: JSON.stringify(body) }),
-    delete: <T>(path: string) => request<T>(path, { method: "DELETE" }),
-}
+export {app, auth}

@@ -1,6 +1,6 @@
 ﻿import { useEffect, useMemo, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
-import { api, firebaseMapRecords } from "../services/firebase";
+import { api, firebaseMapRecords } from "../services/firebase_api.ts";
 import type { ICar } from "../types";
 import { useFiltersStore } from "../stores/filtersStore";
 import FiltersPanel from "../components/homepage/FiltersPanel.tsx";

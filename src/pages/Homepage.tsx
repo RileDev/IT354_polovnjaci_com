@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import FiltersPanel from "../components/homepage/FiltersPanel.tsx";
 import LatestAds from "../components/homepage/LatestAds.tsx";
-import {api, firebaseMapRecords} from "../services/firebase.ts";
+import {api, firebaseMapRecords} from "../services/firebase_api.ts";
 import { useCarsStore } from "../stores/carsStore";
 import { useFiltersStore } from "../stores/filtersStore";
 import type { IBodyType, IBrand, ICar, IFuel, IModel } from "../types";

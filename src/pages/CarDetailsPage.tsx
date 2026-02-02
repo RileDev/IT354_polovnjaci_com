@@ -10,7 +10,7 @@ import {
   Phone,
 } from "lucide-react";
 import { Button } from "../components/ui/button";
-import { api, firebaseMapRecords } from "../services/firebase";
+import { api, firebaseMapRecords } from "../services/firebase_api.ts";
 import { useFiltersStore } from "../stores/filtersStore";
 import type {
   IBodyType,

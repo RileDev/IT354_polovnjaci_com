@@ -1,29 +1,29 @@
-import type {IUser} from "../types";
-import {create} from "zustand";
+import { create } from "zustand";
+import type { IAuthUser } from "../types";
 
 type IAuthState = {
-    user: IUser | null;
-    token: string | null;
-    isLoading: boolean;
-}
-
-type IAuthActions = {
-    setUser: (user: IUser | null) => void;
-    setToken: (token: string | null) => void;
-    setLoading: (isLoading: boolean) => void;
-    logout: () => void;
+  user: IAuthUser | null;
+  token: string | null;
+  isLoading: boolean;
 };
 
-type IAuthStore = IAuthState & IAuthActions
+type IAuthActions = {
+  setUser: (user: IAuthUser | null) => void;
+  setToken: (token: string | null) => void;
+  setLoading: (isLoading: boolean) => void;
+  logout: () => void;
+};
+
+type IAuthStore = IAuthState & IAuthActions;
 
 export const useAuthStore = create<IAuthStore>((set) => ({
-    user: null,
-    token: null,
-    isLoading: true,
+  user: null,
+  token: null,
+  isLoading: true,
 
-    setUser: (user) => set({user}),
-    setToken: (token) => set({token}),
-    setLoading: (isLoading) => set({isLoading}),
+  setUser: (user) => set({ user }),
+  setToken: (token) => set({ token }),
+  setLoading: (isLoading) => set({ isLoading }),
 
-    logout: () => set({user: null, token: null, isLoading: false})
-}))
+  logout: () => set({ user: null, token: null, isLoading: false }),
+}));

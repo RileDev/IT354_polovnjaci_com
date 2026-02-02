@@ -1,19 +1,19 @@
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import FiltersPanel from "../components/homepage/FiltersPanel.tsx";
 import LatestAds from "../components/homepage/LatestAds.tsx";
-import {api, firebaseMapRecords} from "../services/firebase_api.ts";
+import { api, firebaseMapRecords } from "../services/firebase_api.ts";
 import { useCarsStore } from "../stores/carsStore";
 import { useFiltersStore } from "../stores/filtersStore";
 import type { IBodyType, IBrand, ICar, IFuel, IModel } from "../types";
-import {useNavigate} from "react-router";
 
 const Homepage = () => {
-    const navigate = useNavigate()
+  const navigate = useNavigate();
   const { setBrands, setModels, setFuels, setBodyTypes, getFilters } = useFiltersStore();
   const { setCars, setLoading } = useCarsStore();
 
   useEffect(() => {
-      (async () => {
+    (async () => {
       try {
         const [brandsData, modelsData, fuelsData, bodyTypesData] =
           await Promise.all([
@@ -48,20 +48,20 @@ const Homepage = () => {
   }, [setCars, setLoading]);
 
   const handleSearch = () => {
-      const filters = getFilters()
-      const params = new URLSearchParams()
-      Object.entries(filters).map(([key, value]) =>
-      {
-          params.append(key, String(value))
-      })
+    const filters = getFilters();
+    const params = new URLSearchParams();
+    Object.entries(filters).map(([key, value]) => {
+      params.append(key, String(value));
+      return undefined;
+    });
 
-      navigate(`/oglasi?${params.toString()}`)
+    navigate(`/oglasi?${params.toString()}`);
   };
 
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="mb-8 text-3xl font-bold">Pronadjite savrsen automobil</h1>
-      <FiltersPanel onHandleSearch={handleSearch}/>
+      <FiltersPanel onHandleSearch={handleSearch} />
       <LatestAds />
     </div>
   );

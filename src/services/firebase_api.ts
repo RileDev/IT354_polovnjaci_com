@@ -8,13 +8,28 @@ export const firebaseMapRecords = <T extends { _id?: string }>(
             _id: item._id ?? id,
         })) : [];
 
-export async function request<T>(path: string, options: RequestInit = {}) : Promise<T>{
+const buildFirebaseUrl = (path: string, authToken?: string) => {
+    const base = firebaseUrl.endsWith("/") ? firebaseUrl : `${firebaseUrl}/`;
+    const url = new URL(`${base}${path}.json`);
+
+    if (authToken) {
+        url.searchParams.set("auth", authToken);
+    }
+
+    return url.toString();
+};
+
+export async function request<T>(
+    path: string,
+    options: RequestInit = {},
+    authToken?: string,
+): Promise<T> {
     const headers = {
         "Content-Type" : "application/json",
         ...options.headers
     }
 
-    const response = await fetch(`${firebaseUrl}${path}.json`, {
+    const response = await fetch(buildFirebaseUrl(path, authToken), {
         ...options,
         headers
     })
@@ -29,10 +44,11 @@ export async function request<T>(path: string, options: RequestInit = {}) : Prom
 }
 
 export const api = {
-    get: <T>(path: string) => request<T>(path, { method: "GET" }),
-    post: <T>(path: string, body: any) =>
-        request<T>(path, { method: "POST", body: JSON.stringify(body) }),
-    put: <T>(path: string, body: any) =>
-        request<T>(path, { method: "PUT", body: JSON.stringify(body) }),
-    delete: <T>(path: string) => request<T>(path, { method: "DELETE" }),
+    get: <T>(path: string, authToken?: string) => request<T>(path, { method: "GET" }, authToken),
+    post: <T>(path: string, body: any, authToken?: string) =>
+        request<T>(path, { method: "POST", body: JSON.stringify(body) }, authToken),
+    put: <T>(path: string, body: any, authToken?: string) =>
+        request<T>(path, { method: "PUT", body: JSON.stringify(body) }, authToken),
+    delete: <T>(path: string, authToken?: string) =>
+        request<T>(path, { method: "DELETE" }, authToken),
 }

@@ -12,6 +12,7 @@ import { auth } from "./services/firebase.ts";
 import type { IUser } from "./types";
 import { api } from "./services/firebase_api.ts";
 import UserProfilePage from "./pages/UserProfilePage.tsx";
+import UploadCarPage from "./pages/UploadCarPage.tsx";
 
 const mapAuthUser = (user: FirebaseUser | null): IUser | null =>
   user
@@ -58,6 +59,7 @@ const App = () => {
           <Route path="prijava" element={<LoginPage />} />
           <Route path="registracija" element={<RegisterPage />} />
           <Route path="profil" element={<UserProfilePage />} />
+          <Route path="postavi-oglas" element={<UploadCarPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -10,6 +10,7 @@ import RegisterPage from "./pages/RegisterPage.tsx";
 import { useAuthStore } from "./stores/authStore.ts";
 import { auth } from "./services/firebase.ts";
 import type { IUser } from "./types";
+import { api } from "./services/firebase_api.ts";
 import UserProfilePage from "./pages/UserProfilePage.tsx";
 
 const mapAuthUser = (user: FirebaseUser | null): IUser | null =>
@@ -31,8 +32,10 @@ const App = () => {
       setLoading(true);
 
       if (currentUser) {
-        setUser(mapAuthUser(currentUser));
         const token = await currentUser.getIdToken();
+        const baseUser = mapAuthUser(currentUser);
+        const profile = await api.get<IUser | null>(`users/${currentUser.uid}`, token);
+        setUser(baseUser ? { ...baseUser, ...(profile ?? {}) } : profile);
         setToken(token);
       } else {
         setUser(null);

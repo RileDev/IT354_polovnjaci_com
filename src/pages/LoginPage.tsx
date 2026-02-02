@@ -1,4 +1,4 @@
-import {useState, type FormEvent, useEffect} from "react";
+import {useState, type FormEvent} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { FirebaseError } from "firebase/app";
@@ -6,21 +6,14 @@ import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { auth } from "../services/firebase";
 import { api } from "../services/firebase_api";
-import {useAuthStore} from "../stores/authStore.ts";
 
 const LoginPage = () => {
-  const {user} = useAuthStore()
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-
-  useEffect(() => {
-    if(user)
-      navigate("/")
-  }, [navigate, user])
 
   const getAuthErrorMessage = (err: unknown) => {
     if (err instanceof FirebaseError) {

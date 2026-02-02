@@ -13,6 +13,9 @@ import type { IUser } from "./types";
 import { api } from "./services/firebase_api.ts";
 import UserProfilePage from "./pages/UserProfilePage.tsx";
 import UploadCarPage from "./pages/UploadCarPage.tsx";
+import MyAdsPage from "./pages/MyAdsPage.tsx";
+import ProtectedRoute from "./components/ProtectedRoute.tsx";
+import PublicRoute from "./components/PublicRoute.tsx";
 
 const mapAuthUser = (user: FirebaseUser | null): IUser | null =>
   user
@@ -56,10 +59,15 @@ const App = () => {
           <Route index element={<Homepage />} />
           <Route path="oglasi" element={<CarListPage />} />
           <Route path="oglas/:id" element={<CarDetailsPage />} />
-          <Route path="prijava" element={<LoginPage />} />
-          <Route path="registracija" element={<RegisterPage />} />
-          <Route path="profil" element={<UserProfilePage />} />
-          <Route path="postavi-oglas" element={<UploadCarPage />} />
+            <Route element={<PublicRoute />}>
+                <Route path="prijava" element={<LoginPage />} />
+                <Route path="registracija" element={<RegisterPage />} />
+            </Route>
+            <Route element={<ProtectedRoute />}>
+                <Route path="profil" element={<UserProfilePage />} />
+              <Route path="postavi-oglas" element={<UploadCarPage />} />
+              <Route path="moji-oglasi" element={<MyAdsPage />} />
+            </Route>
         </Route>
       </Routes>
     </BrowserRouter>

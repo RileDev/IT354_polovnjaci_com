@@ -1,4 +1,4 @@
-import {useMemo, useState, type FormEvent, useEffect} from "react";
+import {useMemo, useState, type FormEvent} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
   createUserWithEmailAndPassword,
@@ -11,10 +11,8 @@ import { Button } from "../components/ui/button.tsx";
 import { Input } from "../components/ui/input";
 import { auth } from "../services/firebase";
 import { api } from "../services/firebase_api";
-import {useAuthStore} from "../stores/authStore.ts";
 
 const RegisterPage = () => {
-  const {user} = useAuthStore()
   const navigate = useNavigate();
 
   const [name, setName] = useState("");
@@ -27,11 +25,6 @@ const RegisterPage = () => {
   const [error, setError] = useState("");
   const [touched, setTouched] = useState<Record<string, boolean>>({});
   const [submitted, setSubmitted] = useState(false);
-
-  useEffect(() => {
-    if(user)
-      navigate("/")
-  }, [navigate, user])
 
   const markTouched = (field: string) => () =>
     setTouched((prev) => ({ ...prev, [field]: true }));

@@ -8,7 +8,7 @@
 
 Aplikacija je izgrađena koristeći sledeći tehnološki stek:
 - **Frontend Core:** [React 19](https://react.dev/), [TypeScript](https://www.typescriptlang.org/), [Vite](https://vite.dev/)
-- **Stilovi:** [Tailwind CSS v4](https://tailwindcss.com/) i [Radix UI](https://www.radix-ui.com/) komponente
+- **Stilovi:** [Tailwind CSS v4](https://tailwindcss.com/), [shadcn/ui](https://ui.shadcn.com/) i [Radix UI](https://www.radix-ui.com/) komponente
 - **Upravljanje stanjem (State Management):** [Zustand](https://zustand-demo.pmnd.rs/)
 - **Rutiranje:** [React Router v7](https://reactrouter.com/)
 - **Backend & Baza podataka:** [Firebase](https://firebase.google.com/) (Authentication & Realtime Database REST API)
@@ -35,11 +35,10 @@ npm install
 ```
 
 ### 2. Podešavanje Firebase-a (Videti detaljno uputstvo ispod)
-Kreirajte `.env` fajl u korenu projekta (kopiranjem `.env.example` šablona) i unesite vaše Firebase parametre:
+Kreirajte `.env` fajl u korenu projekta (kopiranjem `.env.example` šablona) i popunite vaše Firebase parametre:
 ```bash
 cp .env.example .env
 ```
-Popunite vrednosti u `.env` koristeći `=` umesto dvotačke (npr. `VITE_API_KEY=tvoj_api_key`).
 
 ### 3. Pokretanje u razvojnom režimu
 ```bash
